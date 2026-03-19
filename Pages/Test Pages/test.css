@@ -1,0 +1,775 @@
+.btn-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.solve-btn {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.solve-btn:hover {
+    background-color: #45a049;
+}
+
+.delete-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: #da190b;
+}
+
+/* notes.css */
+
+/* --- General Reset --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* --- Body & Container --- */
+body {
+    background: #f0f4f8;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Navbar */
+.navbar{
+  position:sticky;
+  top:0;
+  padding-left: 5%;
+  width: 100%;
+  background: white;
+  z-index:1000;
+  box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+
+.nav-container{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+/* Logo */
+#logo{
+ width: 100%;
+ height: 12vh;
+ margin-left: 35%;
+}
+
+#h{
+   color: red;
+  border-bottom: 3px solid red;
+}
+/* Nav Links */
+.nav-links{
+    width: 70%;
+  display:flex;
+  align-items:center;
+  align-content: center;
+  gap:30px;
+}
+
+.nav-links a{
+  color: black;
+  text-decoration: none;
+  position: relative;
+  font-weight: 600;
+}
+
+a:hover{
+    color: red;
+}
+
+/* Animated Bottom Border */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2.1px;
+  background: red;
+  transition: width 0.4s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+ .dropdown {
+  width: 80px;
+  position: relative;
+  font-family: Arial, sans-serif;
+}
+
+.select-box {
+  padding: 10px;
+  cursor: pointer;
+  background: #fff;
+}
+
+/* dropdown hide by default */
+.dropdown-list {
+  color: black;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 1em;
+  box-shadow: 0px 0px 5px 5px rgb(228, 228, 228);
+  border-top: none;
+  position: absolute;
+  width: 180%;
+  background: #fff;
+  display: none;
+}
+
+/* hover par open */
+.dropdown:hover .dropdown-list {
+  display: block;
+}
+
+/* options style */
+.dropdown-list li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* option hover red */
+.dropdown-list li:hover {
+  background-color: red;
+  color: white;
+}
+
+
+/* Sign Button */
+.sign-btn{
+  background-color: transparent;
+  padding: 8px 18px;
+  border: 1px solid red;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  color: black;
+  transition: 0.3s;
+}
+
+/* Water Fill Effect */
+.sign-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: red;
+  transition: width 0.4s ease-in-out;
+  z-index: -1;
+}
+
+.sign-btn:hover::before {
+  width: 100%;
+}
+
+.sign-btn:hover {
+  color: white;
+}
+
+/* Hamburger */
+.menu-toggle{
+  display:none;
+}
+
+.hamburger{
+  display:none;
+  font-size:26px;
+  color:black;
+  font-weight: 700;
+  cursor:pointer;
+}
+
+/* Responsive */
+@media(max-width:768px){
+
+  .nav-links{
+    position:absolute;
+    top:70px;
+    width: 60% !important;
+    right:0;
+    border-radius: 0.5em;
+    background: black;
+    width:100%;
+    flex-direction:column;
+    text-align:center;
+    padding:20px 0;
+    gap:20px;
+    display:none;
+  }
+
+    .nav-links a{
+        color: white !important;
+    }
+
+    .nav-links a:hover{
+        color: red !important;
+    }
+  .menu-toggle:checked ~ .nav-links{
+    display:flex;
+  }
+
+  .hamburger{
+    display:block;
+    margin-right: 5% !important;
+  }
+
+  .sign-btn{
+    color: white !important;
+  }
+}
+
+.banner {
+  height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #000000,
+    #cc0000,
+    #3200a8,
+    #8f0077,
+    #f2fcfe
+  );
+  background-size: 400% 400%;
+  animation: gradientMove 10s ease infinite;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.content {
+  padding: 50px 70px;
+  background: white;
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+
+  position: relative;
+  animation: moveBox 6s ease-in-out infinite;
+}
+
+@keyframes moveBox {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(20px, -60px); /* right + up */
+  }
+  50% {
+    transform: translate(0, -70px);   /* up */
+  }
+  75% {
+    transform: translate(-20px, -20px); /* left + up */
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+
+/* --- Header --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 10px 20px;
+    background:rgb(231, 1, 1);
+    color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+header h1 {
+    font-size: 1.8rem;
+}
+
+.create-btn {
+    background: black;
+    color: White;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+a{
+  text-decoration: none;
+}
+.create-btn:hover {
+    background: black;
+    color: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* --- Notes Container --- */
+.notes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* --- Note Cards --- */
+.note {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.5s forwards;
+}
+
+.note h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #1976d2;
+}
+
+.note p {
+    margin-bottom: 10px;
+    line-height: 1.4;
+    color: #555;
+}
+
+.note a {
+    display: block;
+    color: #42a5f5;
+    text-decoration: none;
+    margin-top: 5px;
+    transition: all 0.2s ease;
+}
+
+.note a:hover {
+    color: #1976d2;
+    text-decoration: underline;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Side Form --- */
+.side-form {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 350px;
+    height: 100%;
+    background: #1976d2;
+    color: #fff;
+    padding: 30px 20px;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.2);
+    border-radius: 12px 0 0 12px;
+    transition: right 0.5s ease;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.side-form.active {
+    right: 0;
+}
+
+.side-form h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.side-form input,
+.side-form textarea {
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.side-form input[type="file"] {
+    padding: 5px;
+    background: #fff;
+    color: black;
+}
+
+.side-form button {
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+#addNoteBtn {
+    background: black;
+    color: white;
+}
+
+#addNoteBtn:hover {
+    background: red;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.close-btn {
+    background: red;
+    color: #fff;
+}
+
+.close-btn:hover {
+    background: black;
+    transform: scale(1.05);
+}
+
+
+
+/* --- Responsive --- */
+@media(max-width: 768px){
+    .notes-container {
+        grid-template-columns: 1fr;
+    }
+
+    .side-form {
+        width: 100%;
+    }
+}
+
+
+/* ----------------- Solve Test Side Form ----------------- */
+    .solve-side-form {
+        position: fixed;
+        top: 0;
+        left: -400px; /* hidden by default */
+        width: 350px;
+        height: 100%;
+        background: #fff;
+        box-shadow: 4px 0 15px rgba(0,0,0,0.2);
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        transition: 0.3s;
+        z-index: 1000;
+    }
+
+    .solve-side-form.active {
+        left: 0; /* slides in */
+    }
+
+    .solve-side-form input,
+    .solve-side-form textarea {
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        width: 100%;
+    }
+
+    .solve-side-form button {
+        padding: 10px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+    }
+
+    #submitTestBtn {
+        background: #4caf50;
+        color: #fff;
+    }
+
+    #submitTestBtn:hover {
+        background: #45a049;
+    }
+
+    #closeSolveBtn {
+        background: #f44336;
+        color: #fff;
+    }
+
+    #closeSolveBtn:hover {
+        background: #da190b;
+    }
+
+    @media screen and (max-width: 480px) {
+        .solve-side-form {
+            width: 90%;
+        }
+    }
+
+/* Footer */
+footer{
+  margin-top: 7%;
+  height: 25em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.footer-content{
+  width: 98%;
+  height: 20em;
+  gap: 5%;
+  background: black;
+  border-radius: 20px;
+  position: relative;
+  margin: 40px auto;
+  overflow: hidden;
+  display: flex;
+
+  /* Floating animation */
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Animated Border */
+.footer-content::before{
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 25px;
+  background: linear-gradient(
+    45deg,
+    black,
+    black,
+    black,
+    black
+  );
+  background-size: 300% 300%;
+  animation: borderMove 6s linear infinite;
+  z-index: -1;
+}
+
+/* Glow Effect */
+.footer-content::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(255, 0, 0, 0.4);
+  z-index: -2;
+}
+
+/* Border Animation */
+@keyframes borderMove{
+  0%{ background-position:0% 50%; }
+  50%{ background-position:100% 50%; }
+  100%{ background-position:0% 50%; }
+}
+
+/* Floating Effect */
+@keyframes float{
+  0%{ transform: translateY(0px); }
+  50%{ transform: translateY(-10px); }
+  100%{ transform: translateY(0px); }
+}
+
+.f-one{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 40%;
+  gap: 1em;
+  height: 10em;
+  padding-top: 10%;
+  padding-left: 5%;
+}
+
+.f-one-uper{
+  width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 5%;
+}
+
+#footer-logo{
+  width: 25%;
+  height: 10vh;
+  border-radius: 0.3em;
+}
+
+#f-h1{
+color: white;
+}
+
+#f-one-p1{
+  color: white;
+}
+
+.f-two{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 25%;
+  gap: 1em;
+  height: 10em;
+  padding-top: 11%;
+}
+
+#f-two-h1{
+  color: white;
+}
+
+#f-p1{
+  color: white;
+}
+
+.f-three{
+    display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 30%;
+  gap: 1em;
+  height: 10em;
+  padding-top: 5%;
+}
+
+.f-four{
+      display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 26%;
+  gap: 1em;
+  height: 10em;
+  padding-top: 12%;
+}
+
+.icons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10%;
+}
+
+.f-five{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 20%;
+  gap: 1em;
+  height: 10em;
+  padding-top: 5%;
+}
+
+.footer-bottom{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 3em;
+  background-color: black;
+  color: white;
+  text-align: center;
+  color: rgb(202, 202, 202);
+}
+
+/* --- Notes Card File Section --- */
+.file-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    background: #e3f2fd;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.file-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.file-link {
+    color: #1976d2;
+    text-decoration: none;
+    font-weight: 500;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
+
+.file-link:hover {
+    text-decoration: underline;
+}
+
+.download-btn {
+    background: #42a5f5;
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.download-btn:hover {
+    background: #1976d2;
+    transform: scale(1.05);
+}

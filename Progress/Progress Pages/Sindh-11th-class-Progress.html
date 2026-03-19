@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Result Dashboard</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin:0;
+    background:#f0f2f5;
+  }
+
+  .container {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 220px;
+    background:#1f2937;
+    color:white;
+    display:flex;
+    flex-direction:column;
+    padding:20px;
+  }
+
+  .sidebar button {
+    background:#3b82f6;
+    color:white;
+    border:none;
+    padding:12px;
+    margin-bottom:15px;
+    cursor:pointer;
+    border-radius:10px;
+    font-size:16px;
+    transition: all 0.3s ease;
+  }
+  .sidebar button:hover {
+    background:#2563eb;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+
+  /* Main content */
+  .main {
+    flex:1;
+    padding:20px;
+    overflow-x:auto;
+  }
+
+  /* Form overlay */
+  .form-overlay {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    animation: fadeIn 0.3s;
+  }
+
+  @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+
+  .form-box {
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    width:350px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    animation: slideIn 0.4s;
+  }
+
+  @keyframes slideIn { from {transform: translateY(-50px); opacity:0;} to {transform: translateY(0); opacity:1;} }
+
+  .form-box h2 { margin-top:0; text-align:center; margin-bottom:20px; color:#111827; }
+
+  .form-box input, .form-box input[type="number"] {
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    border-radius:8px;
+    border:1px solid #ccc;
+    transition: all 0.3s;
+    font-size:14px;
+  }
+  .form-box input:focus { border-color:#3b82f6; box-shadow: 0 0 5px #3b82f6; outline:none; }
+
+  .form-box button {
+    width:100%;
+    padding:12px;
+    background:#10b981;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    margin-top:10px;
+    font-size:16px;
+    transition: all 0.3s ease;
+  }
+  .form-box button:hover { background:#059669; transform: scale(1.03); box-shadow:0 4px 10px rgba(0,0,0,0.2); }
+
+  table {
+    width:100%;
+    border-collapse: collapse;
+    margin-top:20px;
+    background:white;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+
+  th, td { padding:12px; text-align:left; border-bottom:1px solid #ddd; }
+  th { background:#3b82f6; color:white; }
+
+ /* Progress bar */
+.progress-container {
+  background:#e5e7eb;
+  border-radius:12px;
+  overflow:hidden;
+  height:24px;
+  width:100%;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.progress-bar {
+  height:100%;
+  width:0;
+  text-align:center;
+  color:white;
+  line-height:24px;
+  border-radius: 5px;
+  transition: width 1s ease, background 0.5s ease;
+  font-weight:bold;
+  font-size:14px;
+}
+
+/* Responsive */
+@media(max-width:768px){
+  .container { flex-direction: column; }
+  .sidebar { width:100%; flex-direction:row; overflow-x:auto; }
+  .sidebar button { flex:1; margin-right:10px; }
+  .main { padding:10px; }
+  .form-box { width:90%; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="sidebar">
+    <button id="addResultBtn">Add Result</button>
+  </div>
+  <div class="main">
+    <h1>Result Dashboard</h1>
+    <table id="resultTable">
+      <thead>
+        <tr>
+          <th>Student Name</th>
+          <th>Father Name</th>
+          <th>Class</th>
+          <th>Subject</th>
+          <th>Percentage</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Form Overlay -->
+<div class="form-overlay" id="formOverlay">
+  <div class="form-box">
+    <h2>Add Student Result</h2>
+    <input type="text" id="studentName" placeholder="Student Name" required>
+    <input type="text" id="fatherName" placeholder="Father Name" required>
+    <input type="text" id="className" placeholder="Class" required>
+    <input type="text" id="subject" placeholder="Subject" required>
+    <input type="number" id="percentage" placeholder="Percentage" required min="0" max="100">
+    <button id="submitResult">Submit</button>
+  </div>
+</div>
+
+<script>
+
+const addResultBtn = document.getElementById('addResultBtn');
+const formOverlay = document.getElementById('formOverlay');
+const submitBtn = document.getElementById('submitResult');
+const resultTableBody = document.querySelector('#resultTable tbody');
+
+
+// ⭐ 1️⃣ Every Page Separate Storage (AUTO)
+const STORAGE_KEY = "results_" + window.location.pathname;
+
+
+// Load results
+let results = JSON.parse(
+localStorage.getItem(STORAGE_KEY)
+) || [];
+
+
+// ⭐ PIN SETTINGS
+const ADD_PIN = "12345"; // Add Result PIN
+const DELETE_PIN = "54321"; // Delete PIN
+
+
+
+// Progress color
+function getProgressColor(percent){
+
+percent = Number(percent);
+
+if(percent < 50) return '#ef4444';
+
+else if(percent < 75) return '#facc15';
+
+else return '#22c55e';
+
+}
+
+
+
+// Render Results
+function renderResults(){
+
+resultTableBody.innerHTML='';
+
+results.forEach((res,index)=>{
+
+const row=document.createElement('tr');
+
+row.innerHTML=`
+
+<td>${res.studentName}</td>
+
+<td>${res.fatherName}</td>
+
+<td>${res.className}</td>
+
+<td>${res.subject}</td>
+
+<td>
+
+<div class="progress-container">
+
+<div class="progress-bar"
+
+style="width:0;
+
+background:${getProgressColor(res.percentage)}">
+
+${res.percentage}%
+
+</div>
+
+</div>
+
+</td>
+
+<td>
+
+<button class="deleteBtn"
+
+data-index="${index}"
+
+style="background:red;
+
+padding:6px 12px;
+
+border-radius:6px;
+
+color:white;
+
+cursor:pointer;">
+
+Delete
+
+</button>
+
+</td>
+
+`;
+
+resultTableBody.appendChild(row);
+
+
+// Animate Progress
+const bar=row.querySelector('.progress-bar');
+
+setTimeout(()=>{
+
+bar.style.width=res.percentage+'%';
+
+},100);
+
+});
+
+
+
+// ⭐ Delete Button PIN
+document.querySelectorAll('.deleteBtn')
+
+.forEach(btn=>{
+
+btn.onclick=()=>{
+
+const idx=btn.dataset.index;
+
+const pin=prompt(
+
+"Enter Founder PIN To Delete Result"
+
+);
+
+if(pin===DELETE_PIN){
+
+if(confirm("Delete this result?")){
+
+results.splice(idx,1);
+
+localStorage.setItem(
+
+STORAGE_KEY,
+
+JSON.stringify(results)
+
+);
+
+renderResults();
+
+}
+
+}
+
+else{
+
+alert("Wrong PIN ❌");
+
+}
+
+};
+
+});
+
+}
+
+
+
+renderResults();
+
+
+
+// ⭐ Add Result PIN
+addResultBtn.onclick=()=>{
+
+const pin=prompt(
+
+"Enter Teacher PIN"
+
+);
+
+if(pin===ADD_PIN){
+
+formOverlay.style.display='flex';
+
+}
+
+else{
+
+alert("Wrong PIN ❌");
+
+}
+
+};
+
+
+
+
+// Submit Result
+submitBtn.onclick=()=>{
+
+const studentName=document
+.getElementById('studentName')
+.value.trim();
+
+const fatherName=document
+.getElementById('fatherName')
+.value.trim();
+
+const className=document
+.getElementById('className')
+.value.trim();
+
+const subject=document
+.getElementById('subject')
+.value.trim();
+
+const percentage=document
+.getElementById('percentage')
+.value.trim();
+
+
+
+if(
+
+studentName &&
+
+fatherName &&
+
+className &&
+
+subject &&
+
+percentage!==''
+
+){
+
+results.push({
+
+studentName,
+
+fatherName,
+
+className,
+
+subject,
+
+percentage
+
+});
+
+
+// Save Separate Page Data
+localStorage.setItem(
+
+STORAGE_KEY,
+
+JSON.stringify(results)
+
+);
+
+renderResults();
+
+
+// Clear form
+
+document.getElementById
+('studentName').value='';
+
+document.getElementById
+('fatherName').value='';
+
+document.getElementById
+('className').value='';
+
+document.getElementById
+('subject').value='';
+
+document.getElementById
+('percentage').value='';
+
+
+
+formOverlay.style.display='none';
+
+}
+
+else{
+
+alert("Fill all fields");
+
+}
+
+};
+
+
+
+// Close overlay click outside
+formOverlay.onclick=(e)=>{
+
+if(e.target===formOverlay){
+
+formOverlay.style.display='none';
+
+}
+
+};
+
+</script>
+</body>
+</html>

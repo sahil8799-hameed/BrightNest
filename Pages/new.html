@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fees Paid Admin</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:linear-gradient(135deg,#141e30,#243b55);
+margin:0;
+padding:30px;
+color:white;
+}
+
+h1{
+text-align:center;
+margin-bottom:25px;
+animation:fade .7s ease;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(-20px)}
+to{opacity:1}
+}
+
+.table-box{
+
+background:#ffffff10;
+backdrop-filter:blur(10px);
+
+padding:20px;
+border-radius:15px;
+
+box-shadow:0 0 20px rgba(0,0,0,.3);
+
+animation:slide .8s ease;
+
+}
+
+@keyframes slide{
+
+from{
+opacity:0;
+transform:translateY(40px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th{
+background:#ff4b2b;
+padding:12px;
+}
+
+td{
+padding:12px;
+text-align:center;
+background:#ffffff08;
+}
+
+tr:hover{
+transform:scale(1.01);
+transition:.3s;
+}
+
+button{
+
+border:none;
+padding:8px 15px;
+border-radius:6px;
+cursor:pointer;
+font-weight:bold;
+
+}
+
+.delete{
+background:red;
+color:white;
+}
+
+.paid{
+background:#00c853;
+color:white;
+}
+
+img{
+
+width:70px;
+border-radius:8px;
+cursor:pointer;
+
+}
+
+/* ZOOM POPUP */
+
+.zoom-box{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,.9);
+
+display:none;
+
+justify-content:center;
+align-items:center;
+
+z-index:9999;
+
+}
+
+.zoom-box img{
+
+max-width:90%;
+max-height:90%;
+
+border-radius:12px;
+
+box-shadow:0 0 30px black;
+
+cursor:zoom-out;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Fee Paid Admin Dashboard</h1>
+
+<div class="table-box">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+<th>Class</th>
+<th>Phone</th>
+<th>Receipt</th>
+<th>Status</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="dataTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<!-- ZOOM BOX -->
+
+<div class="zoom-box" id="zoomBox">
+
+<img id="zoomImage">
+
+</div>
+
+
+<script>
+
+let table=document.getElementById("dataTable");
+
+function loadData(){
+
+table.innerHTML="";
+
+let students=
+
+JSON.parse(localStorage.getItem("feesData"))||[];
+
+students.forEach((student,index)=>{
+
+table.innerHTML+=`
+
+<tr>
+
+<td>${student.name}</td>
+
+<td>${student.class}</td>
+
+<td>${student.phone}</td>
+
+<td>
+
+<img src="${student.file}"
+
+onclick="openZoom('${student.file}')">
+
+</td>
+
+<td>
+
+<button class="paid">
+
+Paid
+
+</button>
+
+</td>
+
+<td>
+
+<button class="delete"
+
+onclick="deleteData(${index})">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+function deleteData(index){
+
+let students=
+
+JSON.parse(localStorage.getItem("feesData"));
+
+students.splice(index,1);
+
+localStorage.setItem(
+
+"feesData",
+
+JSON.stringify(students)
+
+);
+
+loadData();
+
+}
+
+
+/* ZOOM OPEN */
+
+function openZoom(src){
+
+let zoomBox=
+
+document.getElementById("zoomBox");
+
+let zoomImage=
+
+document.getElementById("zoomImage");
+
+zoomImage.src=src;
+
+zoomBox.style.display="flex";
+
+}
+
+
+/* CLOSE ZOOM */
+
+document.getElementById("zoomBox")
+
+.addEventListener("click",function(){
+
+this.style.display="none";
+
+});
+
+
+loadData();
+
+</script>
+
+</body>
+</html>

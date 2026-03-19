@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>Lecture Dashboard</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#f3f6fb;
+}
+
+/* Smooth Scroll */
+
+*{
+box-sizing:border-box;
+transition:.25s ease;
+}
+
+
+.container{
+display:flex;
+min-height:100vh;
+}
+
+
+/* Sidebar */
+
+.sidebar{
+
+width:220px;
+background:#111827;
+color:white;
+padding:20px;
+
+box-shadow:
+3px 0 10px rgba(0,0,0,.2);
+
+}
+
+.sidebar h2{
+
+text-align:center;
+
+margin-bottom:25px;
+
+}
+
+
+/* Buttons Animation */
+
+.sidebar button{
+
+width:100%;
+margin-top:15px;
+padding:13px;
+
+border:none;
+border-radius:10px;
+
+background:red;
+
+color:white;
+
+cursor:pointer;
+
+font-size:15px;
+
+transform:scale(1);
+
+}
+
+.sidebar button:hover{
+
+background:rgb(185, 0, 0);
+
+transform:scale(1.05);
+
+
+}
+
+
+/* Dashboard */
+
+.main{
+
+flex:1;
+padding:20px;
+
+animation:
+fade .6s ease;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+transform:translateY(15px);
+
+}
+
+to{
+
+opacity:1;
+transform:none;
+
+}
+
+}
+
+
+.cards{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,
+minmax(320px,1fr));
+
+gap:20px;
+
+}
+
+
+/* Card Animation */
+
+.card{
+
+background:white;
+
+padding:15px;
+
+border-radius:14px;
+
+box-shadow:
+
+0 4px 12px rgba(0,0,0,.1);
+
+transform:translateY(0);
+
+}
+
+.card:hover{
+
+transform:
+
+translateY(-8px)
+scale(1.02);
+
+box-shadow:
+
+0 12px 25px
+rgba(0,0,0,.18);
+
+}
+
+
+/* Video Hover */
+
+video{
+
+width:100%;
+
+border-radius:12px;
+
+}
+
+.card:hover video{
+
+transform:scale(1.03);
+
+}
+
+
+/* Delete Button */
+
+.delete{
+
+background:#ef4444;
+
+color:white;
+
+border:none;
+
+padding:9px 14px;
+
+border-radius:8px;
+
+cursor:pointer;
+
+}
+
+.delete:hover{
+
+background:#dc2626;
+
+transform:scale(1.08);
+
+}
+
+
+/* Drawer */
+
+.drawer{
+
+position:fixed;
+
+top:0;
+
+right:-100%;
+
+width:420px;
+
+height:100%;
+
+background:white;
+
+box-shadow:
+
+-6px 0 18px rgba(0,0,0,.25);
+
+padding:22px;
+
+overflow:auto;
+
+z-index:999;
+
+transition:
+
+right .4s ease;
+
+}
+
+.drawer.active{
+
+right:0;
+
+}
+
+
+/* Overlay */
+
+.overlay{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:
+
+rgba(0,0,0,.45);
+
+opacity:0;
+
+pointer-events:none;
+
+transition:.3s;
+
+z-index:998;
+
+}
+
+.overlay.active{
+
+opacity:1;
+
+pointer-events:auto;
+
+}
+
+
+/* Inputs */
+
+input,textarea{
+
+width:100%;
+
+padding:11px;
+
+margin-top:10px;
+
+border-radius:10px;
+
+border:
+
+1px solid red;
+
+outline:none;
+
+}
+
+/* Input Focus Glow */
+
+input:focus,
+textarea:focus{
+
+border:
+
+1px solid red;
+
+box-shadow:
+
+0 0 8px
+red;
+
+transform:
+
+scale(1.02);
+
+}
+
+
+/* Submit Button */
+
+.submit{
+
+background:red;
+
+color:white;
+
+border:none;
+
+padding:13px;
+
+margin-top:15px;
+
+border-radius:10px;
+
+cursor:pointer;
+
+font-size:15px;
+
+}
+
+.submit:hover{
+
+background:#db0202;
+
+transform:
+
+translateY(-2px);
+
+box-shadow:
+
+0 10px 20px
+#db0202;
+
+}
+
+
+/* Mobile */
+
+@media(max-width:800px){
+
+.sidebar{
+
+width:150px;
+
+}
+
+.drawer{
+
+width:100%;
+
+}
+
+}
+
+#b-btn{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="overlay"
+id="overlay"
+onclick="closeDrawer()">
+
+</div>
+
+
+<div class="container">
+
+<div class="sidebar">
+
+<h2>Teacher</h2>
+
+<button onclick="openLecture()">
+
+Create Lecture
+
+</button>
+
+<button onclick="openSchedule()">
+
+Create Schedule
+
+</button>
+
+<a href="./subject.html" style="text-decoration: none;"><button id="b-btn">
+   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+    <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg> Go Back
+</button></a>
+</div>
+
+
+<div class="main">
+
+<h2>Dashboard</h2>
+
+<div class="cards"
+id="dashboard">
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- Lecture Drawer -->
+
+<div class="drawer"
+id="lectureDrawer">
+
+<h3>Create Lecture</h3>
+
+<input id="className"
+placeholder="Class Name">
+
+<input id="subject"
+placeholder="Subject">
+
+<input id="topic"
+placeholder="Topic Name">
+
+<textarea
+id="description"
+placeholder="Topic Description">
+
+</textarea>
+
+<label>Choose Video</label>
+
+<input type="file"
+id="videoFile"
+accept="video/*">
+
+<button class="submit"
+onclick="createLecture()">
+
+Create Lecture
+
+</button>
+
+</div>
+
+
+
+<!-- Schedule Drawer -->
+
+<div class="drawer"
+id="scheduleDrawer">
+
+<h3>Create Schedule</h3>
+
+<input id="sclass"
+placeholder="Class Name">
+
+<input id="teacher"
+placeholder="Teacher Name">
+
+<input id="ssubject"
+placeholder="Subject">
+
+<input type="time"
+id="time">
+
+<button class="submit"
+onclick="createSchedule()">
+
+Create Schedule
+
+</button>
+
+</div>
+
+
+
+<script>
+
+/* AUTO PAGE STORAGE SYSTEM */
+
+const STORAGE_KEY =
+"academy_" +
+window.location.pathname
+.split("/")
+.pop()
+.replace(".html","");
+
+const lectureDrawer=
+document.getElementById("lectureDrawer");
+
+const scheduleDrawer=
+document.getElementById("scheduleDrawer");
+
+const overlay=
+document.getElementById("overlay");
+
+const dashboard=
+document.getElementById("dashboard");
+
+
+/* PROGRESS BAR CREATE */
+
+const progressBox=document.createElement("div");
+
+progressBox.style.position="fixed";
+progressBox.style.bottom="20px";
+progressBox.style.right="20px";
+progressBox.style.background="white";
+progressBox.style.padding="15px";
+progressBox.style.borderRadius="12px";
+progressBox.style.boxShadow=
+"0 6px 18px rgba(0,0,0,.2)";
+progressBox.style.display="none";
+
+progressBox.innerHTML=`
+
+<b>Uploading Video...</b>
+
+<div style="
+width:260px;
+height:12px;
+background:#eee;
+margin-top:10px;
+border-radius:20px;
+overflow:hidden;">
+
+<div id="progressBar"
+style="
+height:100%;
+width:0%;
+background:red;
+transition:.2s;">
+</div>
+
+</div>
+
+<p id="progressText">
+0%
+</p>
+
+`;
+
+document.body.appendChild(progressBox);
+
+
+function closeDrawer(){
+
+lectureDrawer.classList.remove("active");
+
+scheduleDrawer.classList.remove("active");
+
+overlay.classList.remove("active");
+
+}
+
+
+function openLecture(){
+
+lectureDrawer.classList.add("active");
+
+scheduleDrawer.classList.remove("active");
+
+overlay.classList.add("active");
+
+}
+
+
+function openSchedule(){
+
+scheduleDrawer.classList.add("active");
+
+lectureDrawer.classList.remove("active");
+
+overlay.classList.add("active");
+
+}
+
+
+document.addEventListener("keydown",function(e){
+
+if(e.key==="Escape"){
+
+closeDrawer();
+
+}
+
+});
+
+
+/* CREATE LECTURE LARGE VIDEO SUPPORT */
+
+function createLecture(){
+
+let video=
+videoFile.files[0];
+
+if(!video){
+
+alert("Upload Video");
+
+return;
+
+}
+
+
+/* Size Warning */
+
+if(video.size > 2*1024*1024*1024){
+
+alert("Video Too Large");
+
+return;
+
+}
+
+
+/* SHOW PROGRESS */
+
+progressBox.style.display="block";
+
+let percent=0;
+
+let bar=
+document.getElementById("progressBar");
+
+let text=
+document.getElementById("progressText");
+
+
+/* Fake Upload Animation */
+
+let fakeUpload=
+setInterval(()=>{
+
+percent+=5;
+
+if(percent>=95){
+
+clearInterval(fakeUpload);
+
+}
+
+bar.style.width=
+percent+"%";
+
+text.innerText=
+percent+"% Uploading";
+
+},200);
+
+
+/* VIDEO URL CREATE */
+
+setTimeout(()=>{
+
+let lecture={
+
+type:"lecture",
+
+class:className.value,
+
+subject:subject.value,
+
+topic:topic.value,
+
+description:description.value,
+
+/* IMPORTANT */
+
+video:
+URL.createObjectURL(video)
+
+};
+
+
+saveData(lecture);
+
+bar.style.width="100%";
+
+text.innerText="Upload Complete ✅";
+
+setTimeout(()=>{
+
+progressBox.style.display="none";
+
+closeDrawer();
+
+loadDashboard();
+
+},1000);
+
+},3500);
+
+}
+
+
+
+/* CREATE SCHEDULE */
+
+function createSchedule(){
+
+let schedule={
+
+type:"schedule",
+
+class:sclass.value,
+
+teacher:teacher.value,
+
+subject:ssubject.value,
+
+time:time.value
+
+};
+
+saveData(schedule);
+
+closeDrawer();
+
+loadDashboard();
+
+}
+
+
+
+/* SAVE */
+
+function saveData(item){
+
+let data=
+
+JSON.parse(
+
+localStorage.getItem(STORAGE_KEY)
+
+)||[];
+
+data.push(item);
+
+localStorage.setItem(
+
+STORAGE_KEY,
+
+JSON.stringify(data)
+
+);
+
+}
+
+
+
+/* DELETE */
+
+function deleteItem(index){
+
+let data=
+
+JSON.parse(
+
+localStorage.getItem(STORAGE_KEY)
+
+);
+
+data.splice(index,1);
+
+localStorage.setItem(
+
+STORAGE_KEY,
+
+JSON.stringify(data)
+
+);
+
+loadDashboard();
+
+}
+
+
+
+/* LOAD DASHBOARD */
+
+function loadDashboard(){
+
+dashboard.innerHTML="";
+
+let data=
+
+JSON.parse(
+
+localStorage.getItem(STORAGE_KEY)
+
+)||[];
+
+data.forEach((item,index)=>{
+
+let card=document.createElement("div");
+
+card.className="card";
+
+if(item.type=="lecture"){
+
+card.innerHTML=`
+
+<h3>${item.class}</h3>
+
+<b>${item.subject}</b>
+
+<p>${item.topic}</p>
+
+<p>${item.description}</p>
+
+<video controls src="${item.video}"></video>
+
+<br><br>
+
+<button class="delete"
+onclick="deleteItem(${index})">
+
+Delete
+
+</button>
+
+`;
+
+}
+
+else{
+
+card.innerHTML=`
+
+<h3>Schedule</h3>
+
+<p>Class : ${item.class}</p>
+
+<p>Teacher : ${item.teacher}</p>
+
+<p>Subject : ${item.subject}</p>
+
+<p>Time : ${item.time}</p>
+
+<button class="delete"
+onclick="deleteItem(${index})">
+
+Delete
+
+</button>
+
+`;
+
+}
+
+dashboard.appendChild(card);
+
+});
+
+}
+
+
+
+window.onload=function(){
+
+closeDrawer();
+
+loadDashboard();
+
+}
+
+</script>
+
+</body>
+</html>

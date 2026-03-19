@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./sindh-board.css">
+
+  <!-- Web Logo -->
+  <link rel="shortcut icon" type="image/x-icon" href="../Images/logo.png" />
+  <title>BrightNest</title>
+</head>
+
+<body>
+<!-- Start Navbar -->
+
+  <nav class="navbar">
+  <div class="nav-container">
+
+    <!-- Logo -->
+    <div class="logo">
+      <img src="../Images/logo.png" alt="logo" id="logo">
+    </div>
+
+    <!-- Hamburger Toggle -->
+    <input type="checkbox" id="menu" class="menu-toggle">
+    <label for="menu" class="hamburger">☰</label>
+
+    <!-- Navigation Links -->
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="./Cources.html">Cources</a>
+
+      <!-- Notes Dropdown -->
+      <div class="dropdown">
+        <div class="select-box">Notes</div>
+        <ul class="dropdown-list">
+          <a href="./Notes/sindh-board.html"><li>Sindh Board</li></a>
+          <a href="./Notes/fedral-board.html"><li>Federal Board</li></a>
+          <a href="./Notes/punjab-board.html"><li>Punjab Board</li></a>
+        </ul>
+      </div>
+
+      <!-- Classes Dropdown -->
+      <div class="dropdown">
+        <div class="select-box"  id="h">Classes</div>
+        <ul class="dropdown-list">
+          <a href="./sindh-board.html"  id="h"><li>Sindh Board</li></a>
+          <a href="./fedral-board.html"><li>Federal Board</li></a>
+          <a href="./punjab-board.html"><li>Punjab Board</li></a>
+        </ul>
+      </div>
+
+      <!-- Notes Dropdown Duplicate (if needed) -->
+      <div class="dropdown">
+        <div class="select-box">Test</div>
+        <ul class="dropdown-list">
+          <a href="./sindh-board - test.html"><li>Sindh Board</li></a>
+          <a href="./fedral-board - test.html"><li>Federal Board</li></a>
+          <a href="./punjab-board - test.html"><li>Punjab Board</li></a>
+        </ul>
+      </div>
+
+
+      <!-- Notes Dropdown Duplicate (if needed) -->
+      <div class="dropdown">
+        <div class="select-box">Student-progress</div>
+        <ul class="dropdown-list">
+          <a href="../Progress/sindh-board - Progress.html"><li>Sindh Board</li></a>
+          <a href="../Progress/fedral-board - Progress.html"><li>Federal Board</li></a>
+          <a href="../Progress/punjab-board - Progress.html"><li>Punjab Board</li></a>
+        </ul>
+      </div>
+
+      <a href="./Fees-paid.html">Pay Fee</a>
+      <a href="./Complain-us.html">Complain</a>
+      <a href="./Log-In.html"class="sign-btn">Sign In</a>
+    </div>
+  </div>
+</nav>
+
+  <!-- End Navbar -->
+
+<!-- Banner Start -->
+<div class="hero">
+  <div class="content">
+    <h1 class="welcome">Welcome To</h1>
+    <h2 class="academy">Sindh Board Classes</h2>
+    <p class="tagline">Class = 8th • 9th • 10th • 11th • 12th • Computer</p>
+    <a href="#" class="btn">Join Now</a>
+  </div>
+</div>
+<!-- Banner End -->
+
+ <!-- Start Cards Section -->
+<div class="cards">
+
+  <!-- 8th Class -->
+  <div class="card">
+    <div class="ribbon">8<sup>th</sup></div>
+    <img src="../Images/8th.jpeg" alt="Course 1">
+    <div class="card-content-m">
+      <h3>8<sup>th</sup> Class</h3>
+      <p>In 8th Class, Science is taught with notes and subject tests for strong learning and easy preparation. 📘✨</p>
+      <a href="#" class="btn" onclick="checkPin('8th')">Enter Class</a>
+    </div>
+  </div>
+
+  <!-- 9th Class -->
+  <div class="card">
+    <div class="ribbon">9<sup>th</sup></div>
+    <img src="../Images/9th.jpeg" alt="Course 2">
+    <div class="card-content-m">
+      <h3>9<sup>th</sup> Class</h3>
+      <p>In 9th Class, core subjects are taught with clear concepts and subject tests for better learning and exam preparation. 📚✨</p>
+      <a href="#" class="btn" onclick="checkPin('9th')">Enter Class</a>
+    </div>
+  </div>
+
+  <!-- 10th Class -->
+  <div class="card">
+    <div class="ribbon">10<sup>th</sup></div>
+    <img src="../Images/10th.jpeg" alt="Course 3">
+    <div class="card-content-m">
+      <h3>10<sup>th</sup> Class</h3>
+      <p>In 10th Class, core subjects are taught with clear concepts and subject tests for better learning and exam preparation. 📘✨</p>
+      <a href="#" class="btn" onclick="checkPin('10th')">Enter Class</a>
+    </div>
+  </div>
+
+  <!-- 11th Class -->
+  <div class="card" style="margin-top: 20%;">
+    <div class="ribbon">11<sup>th</sup></div>
+    <img src="../Images/11th.jpeg" alt="Course 4">
+    <div class="card-content-m">
+      <h3>11<sup>th</sup> Class</h3>
+      <p>In 11th Class, core subjects are taught with clear concepts and subject tests to ensure strong preparation and exam success.✨</p>
+      <a href="#" class="btn" onclick="checkPin('11th')">Enter Class</a>
+    </div>
+  </div>
+
+  <!-- 12th Class -->
+  <div class="card" style="margin-top: 20%;">
+    <div class="ribbon">12<sup>th</sup></div>
+    <img src="../Images/12th.jpeg" alt="Course 5">
+    <div class="card-content-m">
+      <h3>12<sup>th</sup> Class</h3>
+      <p>In 12th Class, core subjects are taught with clear concepts and subject tests to boost learning and exam performance. 📚✨</p>
+      <a href="#" class="btn" onclick="checkPin('12th')">Enter Class</a>
+    </div>
+  </div>
+
+  <!-- Computer Class -->
+  <div class="card" style="margin-top: 20%;">
+    <div class="ribbon">Computer</div>
+    <img src="../Images/Coumputer.jpeg" alt="Course 6">
+    <div class="card-content-m">
+      <h3>Computer</h3>
+      <p>In Computer Class, topics are taught with practical exercises, notes, and subject tests for better learning. 💻✨</p>
+      <a href="#" class="btn" onclick="checkPin('computer')">Enter Class</a>
+    </div>
+  </div>
+
+</div>
+<!-- End Card Section -->
+
+<!-- PIN Script -->
+<script>
+function checkPin(className) {
+  // PINs for each class
+  const pins = {
+    '8th': 'BN7X4Q2',
+    '9th': 'BR9K2M8',
+    '10th': 'BN5Z8L1',
+    '11th': 'B8N3Q7P',
+    '12th': 'BR4T9X6',
+    'computer': 'BN6W2R8'
+  };
+
+  // Pages for each class
+  const pages = {
+    '8th': '../Class Pages/Sindh Board 8th/subject.html',
+    '9th': '../Class Pages/Sindh Board 9th/subject.html',
+    '10th': '../Class Pages/Sindh Board 10th/subject.html',
+    '11th': '../Class Pages/Sindh Board 11th/subject.html',
+    '12th': '../Class Pages/Sindh Board 12th/subject.html',
+    'computer': '../Class Pages/Sindh Board Computer/subject.html'
+  };
+
+  const correctPin = pins[className];
+  const userPin = prompt("Enter your PIN to access this class:");
+
+  if(userPin === null) {
+    alert("Action cancelled.");
+  } else if(userPin === correctPin) {
+    window.location.href = pages[className];
+  } else {
+    alert("Incorrect PIN. Access denied.");
+  }
+}
+</script>
+
+  <!-- Start Footer -->
+      <footer class="footer">
+        <div class="footer-content">
+          <section class="f-one">
+
+            <div class="f-one-uper">
+              <img src="../Images/logo.png" alt="BrightNest" loading="lazy" id="footer-logo" />
+              <h3 id="f-h1">BrightNest Academy</h3>
+            </div>
+            <p id="f-one-p1">BrightNest Academy offers live classes with experienced teachers, complete study
+              materials, and interactive sessions, helping students learn effectively and achieve academic success. ✨
+            </p>
+          </section>
+
+
+          <section class="f-two">
+            <h3 id="f-h1">Features</h3>
+            <p id="f-p1">Live Classes</p>
+            <p id="f-p1">All Subjects Notes</p>
+            <p id="f-p1">Online Tests</p>
+            <p id="f-p1">All Subjects Lectures</p>
+          </section>
+
+          <section class="f-three">
+            <h3 id="f-h1">Developed By</h3>
+            <p id="f-p1">Sahil ( Web Developer )</p>
+            <p id="f-p1">Asad Ali ( Web Founder )</p>
+
+          </section>
+
+
+          <section class="f-five">
+            <h3 id="f-h1">Managment Contact</h3>
+            <p id="f-p1">brightnestacademi@gmail.com</p>
+            <p id="f-p1">+92 3283086136</p>
+          </section>
+
+          <section class="f-four">
+            <h3 id="f-h1">Follow Us</h3>
+            <div class="icons">
+              <div class="icons-1">
+
+                <div class="icon">
+                  <img src="../Images/icons8-facebook-48.png" alt="Facebook" title="Facebook" id="icon" loading="lazy" />
+                </div>
+
+                <div class="icon">
+                  <img src="../Images/icons8-whatsapp-48.png" alt="Whatsapp" title="Whatsapp" id="icon" loading="lazy" />
+
+                </div>
+
+                <div class="icon">
+                  <img src="../Images/icons8-insta-48.png" alt="Instagram" title="Instagram" id="icon" loading="lazy" />
+                </div>
+
+              </div>
+
+              <div class="icons-2">
+                <div class="icon">
+                  <img src="../Images/icons8-twitter-48.png" alt="Twitter" title="Twitter" id="icon" loading="lazy" />
+                </div>
+
+                <div class="icon">
+                  <img src="../Images/icons8-tiktok-48.png" alt="Tiktok" title="Tiktok" id="icon" loading="lazy" />
+                </div>
+
+                <div class="icon">
+                  <img src="../Images/icons8-youtube-48.png" alt="Youtube" title="Youtube" id="icon" loading="lazy" />
+                </div>
+              </div>
+          </section>
+
+
+        </div>
+
+
+
+
+
+        <div class="footer-bottom">
+    © 2026 BrightNest Academy | All Rights Reserved
+  </div>
+    </div>
+
+
+    </footer>
+    <!-- End Footer -->
+
+
+</body>
+</html>

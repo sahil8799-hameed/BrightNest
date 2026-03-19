@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teacher Admin Page</title>
+<style>
+body { font-family: Arial; padding: 20px; }
+table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+th, td { border: 1px solid #333; padding: 8px; text-align: left; }
+th { background-color: #f4f4f4; }
+</style>
+</head>
+<body>
+<h1>Teacher Admin Page</h1>
+<button id="refreshBtn">Refresh Submissions</button>
+<table>
+<thead>
+<tr>
+<th>Test Title</th>
+<th>Student Name</th>
+<th>Father Name</th>
+<th>Subject</th>
+<th>Submitted At</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody id="submissionsBody"></tbody>
+</table>
+
+<script>
+const submissionsBody = document.getElementById("submissionsBody");
+const refreshBtn = document.getElementById("refreshBtn");
+
+function fetchSubmissions() {
+    fetch("http://localhost:8080/submissions")
+        .then(res => res.json())
+        .then(data => {
+            submissionsBody.innerHTML = "";
+            data.forEach(sub => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${sub.testId}</td>
+                    <td>${sub.studentName}</td>
+                    <td>${sub.fatherName}</td>
+                    <td>${sub.subject}</td>
+                    <td>${sub.submittedAt}</td>
+                    <td>${sub.answer ? `<a href="${sub.answer}" target="_blank">View File</a>` : ""}</td>
+                `;
+                submissionsBody.appendChild(tr);
+            });
+        });
+}
+
+refreshBtn.addEventListener("click", fetchSubmissions);
+fetchSubmissions();
+</script>
+</body>
+</html>

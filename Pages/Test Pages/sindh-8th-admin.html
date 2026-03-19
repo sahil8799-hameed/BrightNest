@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>8th Class Admin Panel</title>
+
+<style>
+
+body{
+  font-family: Arial;
+  background:#ffffff;
+  padding:20px;
+}
+
+h1{
+  text-align:center;
+  color:#b71c1c;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:#fff;
+  border-left:5px solid #b71c1c;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+img, iframe{
+  width:100%;
+  margin-top:10px;
+  border-radius:6px;
+  cursor: pointer;
+}
+
+.deleteBtn{
+  margin-top:10px;
+  padding:8px 15px;
+  background:#b71c1c;
+  color:white;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.deleteBtn:hover{
+  background:#7f0000;
+}
+
+/* Modal styling */
+.modal{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.8);
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+}
+
+.modal-content{
+  max-width:90%;
+  max-height:90%;
+}
+
+.modal-content img, .modal-content iframe{
+  width:100%;
+  height:100%;
+}
+
+.modal-close{
+  position:absolute;
+  top:20px;
+  right:30px;
+  font-size:30px;
+  color:white;
+  cursor:pointer;
+  background:none;
+  border:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>8th Class Test Admin Page</h1>
+
+<div class="container" id="submissionsContainer"></div>
+
+<!-- Modal -->
+<div class="modal" id="previewModal">
+  <button class="modal-close" id="closeModal">&times;</button>
+  <div class="modal-content" id="modalContent"></div>
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+import { getDatabase, ref, onValue, remove } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-database.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyDIC_F-CicoOReHOS0_2E479xNO99oxuYY",
+authDomain: "brightnest-8f214.firebaseapp.com",
+databaseURL: "https://brightnest-8f214-default-rtdb.firebaseio.com",
+projectId: "brightnest-8f214",
+storageBucket: "brightnest-8f214.firebasestorage.app",
+messagingSenderId: "73934228297",
+appId: "1:73934228297:web:a36c6cb93407d38c376898"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+/* 8th CLASS DATA */
+const submissionsRef = ref(db,"studentSubmissions/8th");
+const container = document.getElementById("submissionsContainer");
+
+// Modal elements
+const modal = document.getElementById("previewModal");
+const modalContent = document.getElementById("modalContent");
+const closeModal = document.getElementById("closeModal");
+
+closeModal.addEventListener("click",()=>modal.style.display="none");
+
+onValue(submissionsRef,(snapshot)=>{
+
+container.innerHTML="";
+
+snapshot.forEach(child=>{
+
+const data = child.val();
+const card = document.createElement("div");
+card.classList.add("card");
+
+let fileView = "";
+
+if(data.answerFile){
+  if(data.answerFile.includes("pdf")){
+    fileView = `<iframe src="${data.answerFile}" height="200"></iframe>`;
+  } else {
+    fileView = `<img src="${data.answerFile}" style="cursor:pointer;">`;
+  }
+}
+
+card.innerHTML = `
+<h3>Student: ${data.studentName}</h3>
+<p><b>Father Name:</b> ${data.fatherName}</p>
+<p><b>Subject:</b> ${data.subject}</p>
+<p><b>Submitted:</b> ${data.submittedAt}</p>
+${fileView}
+<button class="deleteBtn">Delete Result</button>
+`;
+
+card.querySelector(".deleteBtn").addEventListener("click",()=>{
+  if(confirm("Delete this submission?")){
+    remove(ref(db,"studentSubmissions/8th/"+child.key));
+  }
+});
+
+// Make file clickable to open in modal
+const media = card.querySelector("img, iframe");
+if(media){
+  media.addEventListener("click",()=>{
+    modalContent.innerHTML = media.outerHTML;
+    modal.style.display="flex";
+  });
+}
+
+container.appendChild(card);
+
+});
+
+});
+
+</script>
+
+</body>
+</html>

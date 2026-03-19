@@ -1,0 +1,134 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 380px;
+  height: 500px;
+  position: relative;
+}
+
+.form-box {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px 10px rgb(196, 196, 196);
+  position: relative;
+}
+
+.button-box {
+  width: 220px;
+  margin: 35px auto;
+  position: relative;
+  box-shadow: 0 0 20px 9px #ff99991f; /* Red shadow */
+  border-radius: 30px;
+}
+
+.toggle-btn {
+  padding: 10px 30px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  outline: none;
+  position: relative;
+  color: black; /* Red text for buttons */
+  font-weight: bold;
+}
+
+#btn {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 110px;
+  height: 100%;
+  background-color: #ff4343;
+  border-radius: 30px;
+  transition: 0.5s;
+}
+
+.input-group {
+  top: 180px;
+  position: absolute;
+  width: 280px;
+  transition: 0.5s;
+  left: 50px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px 0;
+  margin: 5px 0;
+  border-left: 0;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 2px solid red; /* Red input border */
+  outline: none;
+  background: transparent;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 10px 0;
+  margin: 20px 0;
+  border: none;
+  outline: none;
+  border-radius: 30px;
+  background:red;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.submit-btn:hover{
+transition: .6s;
+background-color: #c13527;
+}
+
+
+.social-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 0;
+  width: 100%;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+  color: #fff;
+}
+
+.social-btn.google {
+  background: red; /* Google red */
+}
+
+.social-btn.google:hover {
+  background: #c13527;
+}
+
+.social-btn.facebook {
+  background: blue; /* Facebook blue */
+}
+
+.social-btn.facebook:hover {
+  background: #2d4373;
+}
+#login { left: 50px; }
+#register { left: 450px; } jab login pa ata ha to color white ho jaye is ka or jab ata ha register ka to color white ho jaye register ka

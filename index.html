@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- Web Logo -->
+  <link rel="shortcut icon" type="image/x-icon" href="./Images/logo.png" />
+  <title>BrightNest</title>
+</head>
+
+<body>
+  <!-- Start Navbar -->
+
+  <nav class="navbar">
+  <div class="nav-container">
+
+    <!-- Logo -->
+    <div class="logo">
+      <img src="./Images/logo.png" alt="logo" id="logo">
+    </div>
+
+    <!-- Hamburger Toggle -->
+    <input type="checkbox" id="menu" class="menu-toggle">
+    <label for="menu" class="hamburger">☰</label>
+
+    <!-- Navigation Links -->
+    <div class="nav-links">
+      <a href="#" id="h">Home</a>
+      <a href="./Pages/Cources.html">Cources</a>
+
+      <!-- Notes Dropdown -->
+      <div class="dropdown">
+        <div class="select-box">Notes</div>
+        <ul class="dropdown-list">
+          <a href="./Pages/Notes/sindh-board.html"><li>Sindh Board</li></a>
+          <a href="./Pages/Notes/fedral-board.html"><li>Federal Board</li></a>
+          <a href="./Pages/Notes/punjab-board.html"><li>Punjab Board</li></a>
+        </ul>
+      </div>
+
+      <!-- Classes Dropdown -->
+      <div class="dropdown">
+        <div class="select-box">Classes</div>
+        <ul class="dropdown-list">
+          <a href="./Pages/sindh-board.html"><li>Sindh Board</li></a>
+          <a href="./Pages/fedral-board.html"><li>Federal Board</li></a>
+          <a href="./Pages/punjab-board.html"><li>Punjab Board</li></a>
+        </ul>
+      </div>
+
+      <!-- Notes Dropdown Duplicate (if needed) -->
+      <div class="dropdown">
+        <div class="select-box">Test</div>
+        <ul class="dropdown-list">
+          <a href="./Pages/sindh-board - test.html"><li>Sindh Board</li></a>
+          <a href="./Pages/fedral-board - test.html"><li>Federal Board</li></a>
+          <a href="./Pages/punjab-board - test.html"><li>Punjab Board</li></a>
+        </ul>
+      </div>
+
+
+     <!-- Notes Dropdown Duplicate (if needed) -->
+      <div class="dropdown">
+        <div class="select-box">Student-progress</div>
+        <ul class="dropdown-list">
+          <a href="./Progress/sindh-board - Progress.html"><li>Sindh Board</li></a>
+          <a href="./Progress/fedral-board - Progress.html"><li>Federal Board</li></a>
+          <a href="./Progress/punjab-board - Progress.html"><li>Punjab Board</li></a>
+        </ul>
+      </div>
+
+      <a href="./Pages/Fees-paid.html">Pay Fee</a>
+      <a href="./Pages/Complain-us.html">Complain</a>
+      <a href="./Pages/Log-In.html"class="sign-btn">Sign In</a>
+    </div>
+  </div>
+</nav>
+
+  <!-- End Navbar -->
+
+  <!-- Start Sliders -->
+  <div class="slider" id="slider">
+    <div class="slides">
+      <div class="slide">
+        <img src="./Images/Slider-1.png" loading="lazy">
+      </div>
+
+      <div class="slide">
+        <img src="./Images/Slider-2.jpeg" loading="lazy">
+      </div>
+
+      <div class="slide">
+        <img src="./Images/Slider-3.png" loading="lazy">
+      </div>
+
+      <div class="slide">
+        <img src="./Images/Slider-4.png" loading="lazy">
+
+      </div>
+
+      <div class="slide">
+        <img src="./Images/Slider-5.png" loading="lazy">
+
+      </div>
+
+      <div class="slide">
+        <img src="./Images/Slider-6.png" loading="lazy">
+
+      </div>
+
+    </div>
+
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+
+    <div class="dots"></div>
+  </div>
+  <!-- End Sliders -->
+<div class="dropdown">
+  <button class="dropbtn">Admin Panel</button>
+  <div class="dropdown-content">
+    <a href="#" onclick="checkPIN('teacher')">Teacher Admin</a>
+    <a href="./new.html" onclick="checkPIN('founder')">Founder Admin</a>
+  </div>
+</div>
+
+
+  <h1 id="choose" style="color: #3d4963;">CHOOSE & GET YOUR COURSE</h1>
+
+  <!-- Start Cards Section -->
+  <div class="cards">
+
+    <div class="card">
+      <div class="ribbon">8<sup>th</sup> Class</div>
+      <img src="../Images/8th.jpeg" alt="Course 1">
+      <div class="card-content-m">
+        <h3>8<sup>th</sup> Class</h3>
+        <p>In 8th Class, Science is taught with notes and subject tests for strong 
+          learning and easy preparation. 📘✨
+</p>
+        <a href="./Pages/Cources.html" class="btn">Enroll Now</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ribbon">9<sup>th</sup>  Class</div>
+      <img src="./Images/9th.jpeg" alt="Course 2">
+      <div class="card-content-m">
+        <h3>9<sup>th</sup> Class</h3>
+        <p>In 9th Class, core subjects are taught with clear concepts and subject tests for better learning 
+          and exam preparation. 📚✨
+</p>
+        <a href="./Pages/Cources.html" class="btn">Enroll Now</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ribbon">10<sup>th</sup> Class</div>
+      <img src="./Images/10th.jpeg" alt="Course 3">
+      <div class="card-content-m">
+        <h3>10<sup>th</sup> Class</h3>
+        <p>In 10th Class, core subjects are taught with clear concepts and subject tests for better learning and 
+          exam preparation. 📘✨
+</p>
+        <a href="./Pages/Cources.html" class="btn">Enroll Now</a>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 20%;">
+      <div class="ribbon">11<sup>th</sup> Class</div>
+      <img src="./Images/11th.jpeg" alt="Course 3">
+      <div class="card-content-m">
+        <h3>11<sup>th</sup> Class</h3>
+        <p>In 11th Class, core subjects are taught with clear concepts and subject tests to ensure 
+          strong preparation and exam success.✨</p>
+        <a href="./Pages/Cources.html" class="btn">Enroll Now</a>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 20%;">
+      <div class="ribbon">12<sup>th</sup> Class</div>
+      <img src="./Images/12th.jpeg" alt="Course 3">
+      <div class="card-content-m">
+        <h3>12<sup>th</sup> Class</h3>
+        <p>In 12th Class, core subjects are taught with clear concepts and subject tests
+           to boost learning and exam performance. 📚✨
+</p>
+        <a href="./Pages/Cources.html" class="btn">Enroll Now</a>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 20%;">
+      <div class="ribbon">Computer</div>
+      <img src="./Images/Coumputer.jpeg" alt="Course 3">
+      <div class="card-content-m">
+        <h3>Computer</h3>
+        <p>In Computer Class, topics are taught with practical exercises, notes, and
+           subject tests for better learning. 💻✨
+</p>
+        <a href="./Pages/Cources.html" class="btn">Enroll Now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Cards Section -->
+  <h1 id="about-h1" style="color: #3d4963;">ABOUT BRIGHTNEST</h1>
+  <!-- Start About Web -->
+  <div class="Web-Info">
+    <div class="right-side" style="background-color: red;">
+    </div>
+    <div class="left-side">
+      <img src="./Images/logo.png" alt="BrightNest" class="animated-logo" />
+      <h1 style="color: red;   -webkit-text-stroke: 1px rgb(0, 0, 0);" class="animated-text">JOIN BRIGHTNEST SHINE YOUR
+        FUTURE</h1>
+      <p id="info-p">At BrightNest Academy, we don’t just teach — we inspire, guide,<br /> and empower students to
+        unlock their true potential. Our mission is <br />
+        to make quality education accessible,
+        affordable, and impactful for <br />every learner. We connect passionate, experienced teachers with <br />
+        ambitious students in a supportive and results-driven
+        environment.<br />
+        At BrightNest, learning goes beyond textbooks. <br />We focus on concept clarity, confidence building, skill
+        development,<br /> and exam success. Every lesson is designed to be engaging, interactive,<br />
+        and easy to understand, helping students grow academically and<br /> personally.
+        Whether you are strengthening your basics, preparing<br /> for important exams, or aiming for higher
+        achievements, BrightNest<br /> Academy walks with you at every step of your journey.<br />
+        Join us today — because your brighter future starts here. ✨</p>
+    </div>
+  </div>
+
+  
+<!--Start Animited Features -->
+
+  <h1 id="about-h1" style="color: #3d4963;">BRIGHTNEST FEATURES</h1>
+
+
+      <div class="card-slider">
+  <div class="card-track">
+    <div class="mini-card">Live Classes</div>
+    <div class="mini-card">All Subjects Notes</div>
+    <div class="mini-card">Online Tests</div>
+    <div class="mini-card">All Subjects Lectures</div>
+
+    <!-- Duplicate for smooth loop -->
+    <div class="mini-card">Live Classes</div>
+    <div class="mini-card">All Subjects Notes</div>
+    <div class="mini-card">Online Tests</div>
+    <div class="mini-card">All Subjects Lectures</div>
+  </div>
+</div>
+
+<!-- End Animited Features -->
+ 
+  <!-- Start Developer Section -->
+  <section class="developers">
+    <h2 class="developers-h1">
+      <span id="typing-text">Meet Our Founders</span>
+    </h2>
+
+
+    <div class="dev-container">
+
+      <!-- Start Developer Section -->
+      <section class="dev-section">
+
+        <div class="dev-card">
+          <div class="card-content">
+            <img src="./Images/Sahil.png" alt="Sahil-Hameed-Photo" loading="lazy" />
+            <h2>Sahil Hameed</h2>
+            <p>Senior Developer</p>
+            <p>I developed the BrightNest website with both front-end and back-end. It features a responsive design and fully integrated server-side functionality.</p>
+          </div>
+        </div>
+
+        <div class="dev-card">
+          <div class="card-content">
+            <img src="./Images/Asad.png" alt="Asad-Ali-Photo">
+            <h2>Asad Ali</h2>
+            <p>BrightNest Founder</p>
+            <p>I am the Founder of this website and have complete control over its design and administrative operations.</p>
+          </div>
+        </div>
+
+      </section>
+  
+      <!-- Start Footer -->
+      <footer class="footer">
+        <div class="footer-content">
+          <section class="f-one">
+
+            <div class="f-one-uper">
+              <img src="./Images/logo.png" alt="BrightNest" loading="lazy" id="footer-logo" />
+              <h3 id="f-h1">BrightNest Academy</h3>
+            </div>
+            <p id="f-one-p1">BrightNest Academy offers live classes with experienced teachers, complete study
+              materials, and interactive sessions, helping students learn effectively and achieve academic success. ✨
+            </p>
+          </section>
+
+
+          <section class="f-two">
+            <h3 id="f-h1">Features</h3>
+            <p id="f-p1">Live Classes</p>
+            <p id="f-p1">All Subjects Notes</p>
+            <p id="f-p1">Online Tests</p>
+            <p id="f-p1">All Subjects Lectures</p>
+          </section>
+
+          <section class="f-three">
+            <h3 id="f-h1">Developed By</h3>
+            <p id="f-p1">Sahil ( Web Developer )</p>
+            <p id="f-p1">Asad Ali ( Web Founder )</p>
+
+          </section>
+
+
+          <section class="f-five">
+            <h3 id="f-h1">Managment Contact</h3>
+            <p id="f-p1">brightnestacademi@gmail.com</p>
+            <p id="f-p1">+92 3283086136</p>
+          </section>
+
+          <section class="f-four">
+            <h3 id="f-h1">Follow Us</h3>
+            <div class="icons">
+              <div class="icons-1">
+
+                <div class="icon">
+                  <img src="./Images/icons8-facebook-48.png" alt="Facebook" title="Facebook" id="icon" loading="lazy" />
+                </div>
+
+                <div class="icon">
+                  <img src="./Images/icons8-whatsapp-48.png" alt="Whatsapp" title="Whatsapp" id="icon" loading="lazy" />
+
+                </div>
+
+                <div class="icon">
+                  <img src="./Images/icons8-insta-48.png" alt="Instagram" title="Instagram" id="icon" loading="lazy" />
+                </div>
+
+              </div>
+
+              <div class="icons-2">
+                <div class="icon">
+                  <img src="./Images/icons8-twitter-48.png" alt="Twitter" title="Twitter" id="icon" loading="lazy" />
+                </div>
+
+                <div class="icon">
+                  <img src="./Images/icons8-tiktok-48.png" alt="Tiktok" title="Tiktok" id="icon" loading="lazy" />
+                </div>
+
+                <div class="icon">
+                  <img src="./Images/icons8-youtube-48.png" alt="Youtube" title="Youtube" id="icon" loading="lazy" />
+                </div>
+              </div>
+          </section>
+
+
+        </div>
+
+
+
+
+
+        <div class="footer-bottom">
+    © 2026 BrightNest Academy | All Rights Reserved
+  </div>
+    </div>
+
+
+    </footer>
+    <!-- End Footer -->
+
+
+
+
+    <!-- Java Scricpt Code -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+
+        const text = "Meet Our Founders";
+        const typingElement = document.getElementById("typing-text");
+
+        let index = 0;
+        let isDeleting = false;
+
+        function typeLoop() {
+
+          if (!isDeleting) {
+            // Typing
+            typingElement.textContent = text.substring(0, index + 1);
+            index++;
+
+            if (index === text.length) {
+              setTimeout(() => isDeleting = true, 1000); // wait before delete
+            }
+          } else {
+            // Deleting
+            typingElement.textContent = text.substring(0, index - 1);
+            index--;
+
+            if (index === 0) {
+              isDeleting = false;
+            }
+          }
+
+          setTimeout(typeLoop, isDeleting ? 60 : 120);
+        }
+
+        typeLoop();
+
+      });
+    </script>
+
+
+    <script>
+      const slides = document.querySelector('.slides');
+      const slide = document.querySelectorAll('.slide');
+      const prev = document.querySelector('.prev');
+      const next = document.querySelector('.next');
+      const dotsContainer = document.querySelector('.dots');
+
+      let index = 0;
+      let autoSlide;
+
+      function showSlide(i) {
+        if (i >= slide.length) index = 0;
+        else if (i < 0) index = slide.length - 1;
+        else index = i;
+
+        slides.style.transform = `translateX(${-index * 100}%)`;
+
+        document.querySelectorAll('.dots span').forEach(dot => dot.classList.remove('active'));
+        dotsContainer.children[index].classList.add('active');
+      }
+
+      function nextSlide() {
+        showSlide(index + 1);
+      }
+
+      function prevSlideFunc() {
+        showSlide(index - 1);
+      }
+
+      next.addEventListener('click', nextSlide);
+      prev.addEventListener('click', prevSlideFunc);
+
+      slide.forEach((_, i) => {
+        const dot = document.createElement('span');
+        dot.addEventListener('click', () => showSlide(i));
+        dotsContainer.appendChild(dot);
+      });
+
+      function startAuto() {
+        autoSlide = setInterval(nextSlide, 3000);
+      }
+
+      function stopAuto() {
+        clearInterval(autoSlide);
+      }
+
+      document.getElementById('slider').addEventListener('mouseover', stopAuto);
+      document.getElementById('slider').addEventListener('mouseout', startAuto);
+
+      showSlide(0);
+      startAuto();
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,641 @@
+*{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 
+    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+
+.typing{
+font-size:40px;
+white-space:nowrap;
+overflow:hidden;
+color: black;
+text-align: center;
+margin-top: 5%;
+}
+
+ /* ===== Navbar Styles ===== */
+.navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: white;
+  z-index: 9999;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  font-family: Arial, sans-serif;
+}
+
+.nav-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+}
+
+/* Logo */
+.logo img {
+  height: 80px;
+}
+
+/* Links */
+.nav-links {
+  margin-right: -3%;
+  width: 70%;
+  display: flex;
+  align-items: center;
+  gap: 2%; /* compact spacing */
+}
+
+#h{
+  border-bottom: 2px solid red;
+  color: red;
+}
+/* General Nav Link Styling */
+.nav-links a,
+.dropdown .select-box,
+.nav-links button {
+  color: black;
+  text-decoration: none;
+  position: relative;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 6px 10px;
+  transition: color 0.3s ease;
+}
+
+/* Hover color change */
+.nav-links a:hover,
+.dropdown .select-box:hover,
+.nav-links button:hover {
+  color: red;
+}
+
+/* Animated Bottom Border for all nav items */
+.nav-links a::after,
+.dropdown .select-box::after,
+.nav-links button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: red;
+  transition: width 0.4s ease;
+}
+
+/* Expand underline on hover */
+.nav-links a:hover::after,
+.dropdown .select-box:hover::after,
+.nav-links button:hover::after {
+  width: 100%;
+}
+
+
+.sign-btn{
+  background-color: transparent;
+  padding: 8px 18px;
+  border: 1px solid red;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  color: black;
+  transition: 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Water Fill Effect */
+.sign-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: red;
+  transition: width 0.4s ease-in-out;
+  color: white;
+  z-index: -1;
+}
+
+.sign-btn:hover::before {
+  width: 100%;
+}
+
+.sign-btn:hover {
+  color: white !important;
+}
+
+.card-content-m .btn:hover{
+  color:#fff;
+}
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
+
+.select-box {
+  cursor: pointer;
+  background: white;
+  border-radius: 4px;
+  color: black;
+}
+
+.dropdown-list {
+  position: absolute;
+  top: 35px;
+  left: 0;
+  display: none;
+  background: white;
+  border-radius: 4px;
+  min-width: 140px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  z-index: 100;
+  flex-direction: column;
+  list-style: none;
+}
+
+.dropdown-list a {
+  display: block;
+  padding: 8px 12px;
+  color: black;
+}
+
+.dropdown-list a:hover li {
+  color: red;
+}
+
+.dropdown:hover .dropdown-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hamburger for Mobile */
+.menu-toggle {
+  display: none;
+}
+
+.hamburger {
+  display: none;
+  font-size: 24px;
+  color: black;
+  cursor: pointer;
+  margin-left: 25%;
+}
+
+/* Responsive */
+@media screen and (max-width: 900px) {
+.nav-links {
+  position: fixed;
+  top: 60px;
+  left: -100%;
+  background: white;
+  box-shadow: 0px 0px 5px 5px red;
+  border-radius: 1em;
+  width: 100%;
+  height: 27em;
+  padding-top: 20px;
+  gap: 10px;
+  transition: 0.3s;
+  display: flex;
+
+  justify-content: flex-start;
+
+  /* CHANGE ONLY THIS */
+  align-items: flex-start;
+
+  flex-direction: column;
+
+  padding-left: 40px;
+}
+
+.nav-links a,
+.select-box{
+  width: 100%;
+  text-align: left; /* TEXT LEFT LINE MA */
+}
+
+.nav-links{
+  width: 70% !important;
+}
+
+ .sign-btn{
+  width: 7rem !important;
+ }
+
+ 
+  .menu-toggle:checked + .hamburger + .nav-links {
+    left: 0;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+.hero {
+  height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #000000,
+    #cc0000,
+    #3200a8,
+    #8f0077,
+    #f2fcfe
+  );
+  background-size: 400% 400%;
+  animation: gradientMove 10s ease infinite;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.content {
+  padding: 50px 70px;
+  background: white;
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+
+  position: relative;
+  animation: moveBox 6s ease-in-out infinite;
+}
+
+@keyframes moveBox {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(20px, -60px); /* right + up */
+  }
+  50% {
+    transform: translate(0, -70px);   /* up */
+  }
+  75% {
+    transform: translate(-20px, -20px); /* left + up */
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+
+.welcome {
+  font-size: 42px;
+  color: Black;
+  animation: slideDown 1.2s ease;
+}
+
+.academy {
+  font-size: 60px;
+  color: red;
+  margin: 15px 0;
+  animation: zoomIn 1.5s ease;
+}
+
+.tagline {
+  font-size: 22px;
+  color: rgb(0, 0, 0);
+  letter-spacing: 3px;
+  margin-bottom: 30px;
+  animation: fadeIn 2s ease;
+  font-weight: 600;
+}
+
+.btn {
+  position: relative;
+  display: inline-block;
+  padding: 14px 40px;
+  border: 2px solid red;
+  color: red;
+  border-radius: 2em;
+  font-size: 18px;
+  text-decoration: none;
+  font-weight: bold;
+  overflow: hidden;
+  background: transparent;
+  transition: color 0.4s ease-in-out;
+}
+
+/* fill layer */
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: red;
+  transition: width 0.4s ease-in-out;
+  z-index: -1;
+}
+
+/* hover effect */
+.btn:hover::before {
+  width: 100%;
+}
+
+.btn:hover {
+  color: white;
+}
+
+
+/* Animations */
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-60px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.6); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+/* Cards */
+.cards{
+margin-top: 5%;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap:20px;
+  width:100%;
+  max-width:1200px;
+  padding-left: 10%;
+}
+
+.card{
+  height: 29em;
+  background:#fff;
+  border-radius:15px;
+  box-shadow:0 10px 20px rgba(0, 0, 0, 0.1);
+  overflow:hidden;
+  position:relative;
+  cursor:pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover{
+  transform: translateY(-10px);
+  box-shadow:0 15px 25px rgba(0,0,0,0.2);
+}
+
+/* Image container */
+.card img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+  height:240px;
+  object-fit:cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover img{
+  transform: scale(1.1);
+}
+
+/* Card content */
+.card-content-m{
+  padding:20px;
+}
+
+.card-content-m h3{
+  font-size:20px;
+  margin-bottom:10px;
+  color:#333;
+}
+
+.card-content p{
+  font-size:14px;
+  color:#666;
+  line-height:1.4;
+  margin-bottom:15px;
+}
+
+/* Button */
+.card-content-m .btn{
+  margin-top: 10%;
+  display:inline-block;
+  padding:8px 18px;
+  border:1px solid red;
+  border-radius:5px;
+  background:transparent;
+  color: red;
+  font-weight:600;
+  text-decoration:none;
+  transition:0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* Ribbon / tag */
+.ribbon{
+  position:absolute;
+  top:15px;
+  left:-35px;
+  background:#ff4d4d;
+  color:#fff;
+  padding:5px 50px;
+  transform: rotate(-45deg);
+  font-size:12px;
+  font-weight:600;
+  box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* Footer */
+footer{
+  margin-top: 7%;
+  height: 25em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.footer-content{
+  width: 98%;
+  height: 20em;
+  gap: 5%;
+  background: black;
+  border-radius: 20px;
+  position: relative;
+  margin: 40px auto;
+  overflow: hidden;
+  display: flex;
+
+  /* Floating animation */
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Animated Border */
+.footer-content::before{
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 25px;
+  background: linear-gradient(
+    45deg,
+    black,
+    black,
+    black,
+    black
+  );
+  background-size: 300% 300%;
+  animation: borderMove 6s linear infinite;
+  z-index: -1;
+}
+
+/* Glow Effect */
+.footer-content::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(255, 0, 0, 0.4);
+  z-index: -2;
+}
+
+/* Border Animation */
+@keyframes borderMove{
+  0%{ background-position:0% 50%; }
+  50%{ background-position:100% 50%; }
+  100%{ background-position:0% 50%; }
+}
+
+/* Floating Effect */
+@keyframes float{
+  0%{ transform: translateY(0px); }
+  50%{ transform: translateY(-10px); }
+  100%{ transform: translateY(0px); }
+}
+
+.f-one{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 40%;
+  gap: 1em;
+  height: 10em;
+  padding-top: 10%;
+  padding-left: 5%;
+}
+
+.f-one-uper{
+  width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 5%;
+}
+
+#footer-logo{
+  width: 25%;
+  height: 10vh;
+  border-radius: 0.3em;
+}
+
+#f-h1{
+color: white;
+}
+
+#f-one-p1{
+  color: white;
+}
+
+.f-two{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 25%;
+  gap: 1em;
+  height: 10em;
+  padding-top: 11%;
+}
+
+#f-two-h1{
+  color: white;
+}
+
+#f-p1{
+  color: white;
+}
+
+.f-three{
+    display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 30%;
+  gap: 1em;
+  height: 10em;
+  padding-top: 5%;
+}
+
+.f-four{
+      display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 26%;
+  gap: 1em;
+  height: 10em;
+  padding-top: 12%;
+}
+
+.icons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10%;
+}
+
+.f-five{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 20%;
+  gap: 1em;
+  height: 10em;
+  padding-top: 5%;
+}
+
+.footer-bottom{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 3em;
+  background-color: black;
+  color: white;
+  text-align: center;
+  color: rgb(202, 202, 202);
+}
