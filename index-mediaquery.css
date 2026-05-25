@@ -1,0 +1,585 @@
+* {
+    padding: 0%;
+    margin: 0%;
+}
+
+/* Phones Screens */
+@media (min-width: 0px) and (max-width: 500px) {
+    #choose {
+        margin-top: 15% !important;
+    }
+
+    .cards {
+        padding-left: 0% !important;
+        margin-top: 10% !important;
+    }
+
+
+    .card {
+        margin-top: 10% !important;
+        width: 80% !important;
+        margin-left: 10% !important;
+    }
+
+    #about-h1 {
+        margin-top: 25% !important;
+    }
+
+    .Web-Info {
+        flex-direction: column !important;
+        margin-top: 15rem;
+    }
+
+
+    .right-side {
+        margin-top: 50%;
+        width: 95% !important;
+        margin-left: 3% !important;
+    }
+
+    .right-side::before {
+        width: 99.8% !important;
+        height: 30em !important;
+    }
+
+    .left-side {
+        padding-left: 10% !important;
+        width: 95% !important;
+    }
+
+    #info-p {
+        display: none !important;
+    }
+
+    #info-p2 {
+        display: flex !important;
+    }
+
+    #feature-h1 {
+        margin-top: 140% !important;
+    }
+
+    .developers {
+        flex-direction: column !important;
+    }
+
+    .dev-section {
+        width: 95% !important;
+        padding-left: 5% !important;
+    }
+
+    .dev-section .dev-card {
+        width: 100% !important;
+    }
+
+    .footer {
+        padding-top: 0% !important;
+        height: 70em !important;
+        flex-direction: column !important;
+    }
+
+    .footer-content {
+        margin: 0% !important;
+        height: 100em !important;
+        flex-direction: column !important;
+        gap: 1em !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    #footer-logo{
+        height: auto !important;
+        margin-left: -15% !important;
+    }
+    .f-one {
+        width: 80% !important;
+        height: auto !important;
+    }
+
+    .f-two {
+        width: 70% !important;
+    }
+
+    .f-three,
+    .f-five,
+    .f-four {
+        width: 70% !important;
+    }
+
+
+
+}
+
+
+/* Large  Phones Screens */
+@media (min-width: 501px) and (max-width: 579px) {
+    #choose {
+        margin-top: 15% !important;
+    }
+
+    .cards {
+        padding-left: 0% !important;
+        margin-top: 10% !important;
+    }
+
+
+    .card {
+        margin-top: 10% !important;
+        width: 70% !important;
+        margin-left: 15%;
+    }
+
+    #about-h1 {
+        margin-top: 15% !important;
+    }
+
+    .Web-Info {
+        flex-direction: column !important;
+        margin-top: 15rem;
+    }
+
+
+    .right-side {
+        margin-top: 50%;
+        width: 95% !important;
+        margin-left: 3% !important;
+    }
+
+    .right-side::before {
+        width: 99.8% !important;
+        height: 30em !important;
+    }
+
+    .left-side {
+        padding-left: 10% !important;
+        width: 95% !important;
+    }
+
+    #info-p {
+        display: none !important;
+    }
+
+    #info-p2 {
+        display: flex !important;
+    }
+
+    #feature-h1 {
+        margin-top: 90% !important;
+    }
+
+    .developers {
+        flex-direction: column !important;
+    }
+
+    .dev-section {
+        width: 95% !important;
+        padding-left: 5% !important;
+    }
+
+    .dev-section .dev-card {
+        width: 80% !important;
+    }
+
+    .footer {
+        padding-top: 0% !important;
+        height: 70em !important;
+        flex-direction: column !important;
+    }
+
+    .footer-content {
+        margin: 0% !important;
+        height: 100em !important;
+        flex-direction: column !important;
+        gap: 1em !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    #footer-logo{
+        height: auto !important;
+        margin-left: -25% !important;
+    }
+
+    .f-one {
+        width: 80% !important;
+        height: auto !important;
+    }
+
+    .f-two {
+        width: 70% !important;
+    }
+
+    .f-three,
+    .f-five,
+    .f-four {
+        width: 70% !important;
+    }
+
+
+
+}
+
+
+/* Small tablets Screens */
+@media (min-width: 580px) and (max-width: 800px) {
+    #choose {
+        margin-top: 15% !important;
+    }
+
+    .cards {
+        padding-left: 0% !important;
+        margin-top: 10% !important;
+    }
+
+
+    .card {
+        margin-top: 10% !important;
+        width: 95% !important;
+        margin-left: 2.5% !important;
+        height: auto !important;
+    }
+
+    #about-h1 {
+        margin-top: 10% !important;
+    }
+
+    .Web-Info {
+        flex-direction: column !important;
+        margin-top: 15rem;
+    }
+
+
+    .right-side {
+        margin-top: 30%;
+        width: 95% !important;
+        margin-left: 3% !important;
+    }
+
+    .right-side::before {
+        width: 99.8% !important;
+        height: 30em !important;
+    }
+
+    .left-side {
+        padding-left: 10% !important;
+        width: 95% !important;
+    }
+
+    #info-p {
+        display: none !important;
+    }
+
+    #info-p2 {
+        display: flex !important;
+    }
+
+    #feature-h1 {
+        margin-top: 60% !important;
+    }
+
+    .developers {
+        flex-direction: column !important;
+    }
+
+    .dev-section {
+        width: 95% !important;
+        padding-left: 5% !important;
+    }
+
+    .dev-section .dev-card {
+        width: 70% !important;
+    }
+
+    .footer {
+        padding-top: 0% !important;
+        height: 70em !important;
+        flex-direction: column !important;
+    }
+
+    .footer-content {
+        margin: 0% !important;
+        height: 100em !important;
+        flex-direction: column !important;
+        gap: 1em !important;
+        align-items: center !important;
+    }
+
+    #footer-logo{
+        height: auto !important;
+        margin-left: -25% !important;
+    }
+
+    .f-one {
+        width: 80% !important;
+        height: auto !important;
+    }
+
+    .f-two {
+        width: 70% !important;
+    }
+
+    .f-three,
+    .f-five,
+    .f-four {
+        width: 70% !important;
+    }
+
+
+
+}
+
+
+/* Midium tablets Screens */
+@media (min-width: 801px) and (max-width: 900px) {
+    #choose {
+        margin-top: 5% !important;
+    }
+
+    .cards {
+        padding-left: 0% !important;
+        margin-top: 0% !important;
+    }
+
+
+    .card {
+        margin-top: 10% !important;
+        width: 90% !important;
+        margin-left: 5% !important;
+        height: auto !important;
+    }
+
+    #about-h1 {
+        margin-top: 10% !important;
+    }
+
+    .Web-Info {
+        flex-direction: column !important;
+        margin-top: 15rem;
+    }
+
+
+    .right-side {
+        margin-top: 10%;
+        width: 95% !important;
+        margin-left: 3% !important;
+    }
+
+    .right-side::before {
+        width: 99.8% !important;
+        height: 30em !important;
+    }
+
+    .left-side {
+        padding-left: 10% !important;
+        width: 95% !important;
+    }
+
+    #info-p {
+        display: none !important;
+    }
+
+    #info-p2 {
+        display: flex !important;
+    }
+
+    #feature-h1 {
+        margin-top: 40% !important;
+    }
+
+    .developers {
+        flex-direction: column !important;
+    }
+
+    .dev-section {
+        width: 95% !important;
+        padding-left: 5% !important;
+    }
+
+    .dev-section .dev-card {
+        width: 60% !important;
+    }
+
+    .footer {
+        padding-top: 0% !important;
+        height: 70em !important;
+        flex-direction: column !important;
+    }
+
+    .footer-content {
+        margin: 0% !important;
+        height: 100em !important;
+        flex-direction: column !important;
+        gap: 1em !important;
+        align-items: center !important;
+    }
+
+    #footer-logo{
+        height: auto !important;
+        margin-left: -40% !important;
+    }
+
+    .f-one {
+        width: 80% !important;
+        height: auto !important;
+    }
+
+    .f-two {
+        width: 70% !important;
+    }
+
+    .f-three,
+    .f-five,
+    .f-four {
+        width: 70% !important;
+    }
+
+
+
+}
+/* Desktops Screens */
+@media (min-width: 905px) and (max-width: 1050px) {
+   
+.nav-links {
+  width: 80% !important;
+  display: flex;
+  align-items: center;
+  gap: 0.2% !important;
+}
+
+
+    #choose {
+        margin-top: 5% !important;
+    }
+
+    .cards {
+        padding-left: 0% !important;
+        margin-top: 0% !important;
+    }
+
+
+    .card {
+        margin-top: 10% !important;
+        width: 90% !important;
+        height: auto !important;
+        margin-left: 5% !important;
+    }
+
+    #about-h1 {
+        margin-top: 10% !important;
+    }
+.Web-Info{
+    width: 95% !important;
+}
+    .right-side {
+        margin-top: 10%;
+        width: 110% !important;
+        height: 40.5em !important;
+    }
+
+    .right-side::before {
+        width: 100% !important;
+        height: 40em !important;
+    }
+
+    .left-side {
+        padding-left: 1% !important;
+        width: 90% !important;
+    }
+
+    #info-p {
+        display: none !important;
+    }
+
+    #info-p2 {
+        display: flex !important;
+    }
+
+    #feature-h1 {
+        margin-top: 30% !important;
+    }
+
+    .developers {
+        flex-direction: column !important;
+    }
+
+    .dev-section {
+        width: 95% !important;
+        padding-left: 5% !important;
+    }
+
+    .dev-section .dev-card {
+        width: 60% !important;
+    }
+
+    .footer {
+        padding-top: 0% !important;
+        height: 70em !important;
+        flex-direction: column !important;
+    }
+
+    .footer-content {
+        margin: 0% !important;
+        height: 100em !important;
+        flex-direction: column !important;
+        gap: 1em !important;
+        align-items: center !important;
+    }
+
+    #footer-logo{
+        height: auto !important;
+        margin-left: -40% !important;
+    }
+
+    .f-one {
+        width: 80% !important;
+        height: auto !important;
+    }
+
+    .f-two {
+        width: 70% !important;
+    }
+
+    .f-three,
+    .f-five,
+    .f-four {
+        width: 70% !important;
+    }
+
+
+
+}
+
+/* Large Screens */
+@media (min-width: 1051px) and (max-width: 1200px) {
+.cards{
+    padding-left: 0% !important;
+}
+
+#feature-h1 {
+        margin-top: 25% !important;
+    }
+
+    .Web-Info{
+    width: 95% !important;
+}
+    .right-side {
+        margin-top: 10%;
+        width: 110% !important;
+        height: 40.5em !important;
+    }
+
+    .right-side::before {
+        width: 100% !important;
+        height: 40em !important;
+    }
+
+    .left-side {
+        padding-left: 1% !important;
+        width: 90% !important;
+    }
+
+    #info-p{
+        font-size: 1.1rem !important;
+
+    }
+}

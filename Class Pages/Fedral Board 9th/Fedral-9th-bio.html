@@ -404,7 +404,7 @@ onclick="closeDrawer()">
 
 <button onclick="openLecture()">
 
-Create Lecture
+Upload Lecture
 
 </button>
 
@@ -413,6 +413,14 @@ Create Lecture
 Create Schedule
 
 </button>
+
+<a href="../../online-class/Fedral Board 9th Class/Fedral 9th Bio.html" style="text-decoration: none;"><button id="b-btn">
+    Join Class
+   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF" style="margin-left: 5%;">
+    <path d="M160-391h45l23-66h104l24 66h44l-97-258h-46l-97 258Zm81-103 38-107h2l38 107h-78Zm319-70v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-600q-38 0-73 9.5T560-564Zm0 220v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-380q-38 0-73 9t-67 27Zm0-110v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-490q-38 0-73 
+    9.5T560-454ZM260-320q47 0 91.5 10.5T440-278v-394q-41-24-87-36t-93-12q-36 0-71.5 7T120-692v396q35-12 69.5-18t70.5-6Zm260 42q44-21 88.5-31.5T700-320q36 0 70.5 6t69.5 18v-396q-33-14-68.5-21t-71.5-7q-47 0-93 12t-87 36v394Zm-40 118q-48-38-104-59t-116-21q-42 0-82.5 11T100-198q-21 11-40.5-1T40-234v-482q0-11 5.5-21T62-752q46-24 96-36t102-12q58 0 113.5 15T480-740q51-30
+     106.5-45T700-800q52 0 102 12t96 36q11 5 16.5 15t5.5 21v482q0 23-19.5 35t-40.5 1q-37-20-77.5-31T700-240q-60 0-116 21t-104 59ZM280-499Z"/></svg>
+</button></a>
 
 <a href="./subject.html" style="text-decoration: none;"><button id="b-btn">
    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
@@ -505,377 +513,205 @@ Create Schedule
 
 
 
-<script>
+<script type="module">
 
-/* AUTO PAGE STORAGE SYSTEM */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
+import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js";
 
-const STORAGE_KEY =
-"academy_" +
-window.location.pathname
-.split("/")
-.pop()
-.replace(".html","");
+/* FIREBASE CONFIG */
+const firebaseConfig = {
+  apiKey: "AIzaSyDIC_F-CicoOReHOS0_2E479xNO99oxuYY",
+  authDomain: "brightnest-8f214.firebaseapp.com",
+  databaseURL: "https://brightnest-8f214-default-rtdb.firebaseio.com",
+  projectId: "brightnest-8f214",
+  storageBucket: "brightnest-8f214.appspot.com",
+  messagingSenderId: "73934228297",
+  appId: "1:73934228297:web:a36c6cb93407d38c376898"
+};
 
-const lectureDrawer=
-document.getElementById("lectureDrawer");
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const storage = getStorage(app);
 
-const scheduleDrawer=
-document.getElementById("scheduleDrawer");
+/* SAME PATH FOR SAVE + LOAD */
+const PAGE_KEY = "academy/lectures";
 
-const overlay=
-document.getElementById("overlay");
+/* ELEMENTS */
+const lectureDrawer = document.getElementById("lectureDrawer");
+const scheduleDrawer = document.getElementById("scheduleDrawer");
+const overlay = document.getElementById("overlay");
+const dashboard = document.getElementById("dashboard");
 
-const dashboard=
-document.getElementById("dashboard");
-
-
-/* PROGRESS BAR CREATE */
-
-const progressBox=document.createElement("div");
-
-progressBox.style.position="fixed";
-progressBox.style.bottom="20px";
-progressBox.style.right="20px";
-progressBox.style.background="white";
-progressBox.style.padding="15px";
-progressBox.style.borderRadius="12px";
-progressBox.style.boxShadow=
-"0 6px 18px rgba(0,0,0,.2)";
-progressBox.style.display="none";
-
-progressBox.innerHTML=`
-
-<b>Uploading Video...</b>
-
-<div style="
-width:260px;
-height:12px;
-background:#eee;
-margin-top:10px;
-border-radius:20px;
-overflow:hidden;">
-
-<div id="progressBar"
-style="
-height:100%;
-width:0%;
-background:red;
-transition:.2s;">
-</div>
-
-</div>
-
-<p id="progressText">
-0%
-</p>
-
-`;
-
-document.body.appendChild(progressBox);
-
-
-function closeDrawer(){
-
-lectureDrawer.classList.remove("active");
-
-scheduleDrawer.classList.remove("active");
-
-overlay.classList.remove("active");
-
+/* DRAWER */
+window.closeDrawer = function(){
+  lectureDrawer.classList.remove("active");
+  scheduleDrawer.classList.remove("active");
+  overlay.classList.remove("active");
 }
 
-
-function openLecture(){
-
-lectureDrawer.classList.add("active");
-
-scheduleDrawer.classList.remove("active");
-
-overlay.classList.add("active");
-
+window.openLecture = function(){
+  lectureDrawer.classList.add("active");
+  overlay.classList.add("active");
 }
 
-
-function openSchedule(){
-
-scheduleDrawer.classList.add("active");
-
-lectureDrawer.classList.remove("active");
-
-overlay.classList.add("active");
-
+window.openSchedule = function(){
+  scheduleDrawer.classList.add("active");
+  overlay.classList.add("active");
 }
 
+/* CREATE LECTURE */
+window.createLecture = function(){
 
-document.addEventListener("keydown",function(e){
+let className = document.getElementById("className").value.trim();
+let subject = document.getElementById("subject").value.trim();
+let topic = document.getElementById("topic").value.trim();
+let description = document.getElementById("description").value.trim();
+let video = document.getElementById("videoFile").files[0];
 
-if(e.key==="Escape"){
+/* VALIDATION */
+if(!className || !subject || !topic || !description){
+  alert("Fill all fields");
+  return;
+}
+
+if(!video){
+  alert("Upload Video");
+  return;
+}
+
+/* FILE SIZE LIMIT (20MB) */
+if(video.size > 20 * 1024 * 1024){
+  alert("Max 20MB allowed");
+  return;
+}
+
+/* UPLOAD */
+let storageRef = sRef(storage, "videos/" + Date.now() + "_" + video.name);
+let uploadTask = uploadBytesResumable(storageRef, video);
+
+/* LOADING */
+alert("Uploading... please wait");
+
+uploadTask.on("state_changed", 
+(snapshot)=>{
+  let percent = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+  console.log("Uploading:", percent + "%");
+}, 
+(error)=>{
+  console.error(error);
+  alert("Upload Failed ❌");
+}, 
+()=>{
+
+getDownloadURL(uploadTask.snapshot.ref).then((url)=>{
+
+let lecture = {
+type:"lecture",
+class:className,
+subject:subject,
+topic:topic,
+description:description,
+video:url,
+time:Date.now()
+};
+
+/* SAVE */
+push(ref(db, PAGE_KEY), lecture);
+
+alert("Lecture Uploaded ✅");
+
+/* CLEAR */
+document.getElementById("className").value="";
+document.getElementById("subject").value="";
+document.getElementById("topic").value="";
+document.getElementById("description").value="";
+document.getElementById("videoFile").value="";
 
 closeDrawer();
-
-}
 
 });
 
-
-/* CREATE LECTURE LARGE VIDEO SUPPORT */
-
-function createLecture(){
-
-let video=
-videoFile.files[0];
-
-if(!video){
-
-alert("Upload Video");
-
-return;
+});
 
 }
-
-
-/* Size Warning */
-
-if(video.size > 2*1024*1024*1024){
-
-alert("Video Too Large");
-
-return;
-
-}
-
-
-/* SHOW PROGRESS */
-
-progressBox.style.display="block";
-
-let percent=0;
-
-let bar=
-document.getElementById("progressBar");
-
-let text=
-document.getElementById("progressText");
-
-
-/* Fake Upload Animation */
-
-let fakeUpload=
-setInterval(()=>{
-
-percent+=5;
-
-if(percent>=95){
-
-clearInterval(fakeUpload);
-
-}
-
-bar.style.width=
-percent+"%";
-
-text.innerText=
-percent+"% Uploading";
-
-},200);
-
-
-/* VIDEO URL CREATE */
-
-setTimeout(()=>{
-
-let lecture={
-
-type:"lecture",
-
-class:className.value,
-
-subject:subject.value,
-
-topic:topic.value,
-
-description:description.value,
-
-/* IMPORTANT */
-
-video:
-URL.createObjectURL(video)
-
-};
-
-
-saveData(lecture);
-
-bar.style.width="100%";
-
-text.innerText="Upload Complete ✅";
-
-setTimeout(()=>{
-
-progressBox.style.display="none";
-
-closeDrawer();
-
-loadDashboard();
-
-},1000);
-
-},3500);
-
-}
-
-
 
 /* CREATE SCHEDULE */
+window.createSchedule = function(){
 
-function createSchedule(){
+let sclass = document.getElementById("sclass").value;
+let teacher = document.getElementById("teacher").value;
+let ssubject = document.getElementById("ssubject").value;
+let time = document.getElementById("time").value;
 
-let schedule={
-
+let schedule = {
 type:"schedule",
-
-class:sclass.value,
-
-teacher:teacher.value,
-
-subject:ssubject.value,
-
-time:time.value
-
+class:sclass,
+teacher:teacher,
+subject:ssubject,
+time:time
 };
 
-saveData(schedule);
+push(ref(db, PAGE_KEY), schedule);
+
+alert("Schedule Added ✅");
 
 closeDrawer();
 
-loadDashboard();
-
 }
-
-
-
-/* SAVE */
-
-function saveData(item){
-
-let data=
-
-JSON.parse(
-
-localStorage.getItem(STORAGE_KEY)
-
-)||[];
-
-data.push(item);
-
-localStorage.setItem(
-
-STORAGE_KEY,
-
-JSON.stringify(data)
-
-);
-
-}
-
-
 
 /* DELETE */
-
-function deleteItem(index){
-
-let data=
-
-JSON.parse(
-
-localStorage.getItem(STORAGE_KEY)
-
-);
-
-data.splice(index,1);
-
-localStorage.setItem(
-
-STORAGE_KEY,
-
-JSON.stringify(data)
-
-);
-
-loadDashboard();
-
+window.deleteItem = function(id){
+remove(ref(db, PAGE_KEY + "/" + id));
 }
 
-
-
 /* LOAD DASHBOARD */
-
 function loadDashboard(){
+
+onValue(ref(db, PAGE_KEY), (snapshot)=>{
 
 dashboard.innerHTML="";
 
-let data=
-
-JSON.parse(
-
-localStorage.getItem(STORAGE_KEY)
-
-)||[];
-
-data.forEach((item,index)=>{
-
-let card=document.createElement("div");
-
-card.className="card";
-
-if(item.type=="lecture"){
-
-card.innerHTML=`
-
-<h3>${item.class}</h3>
-
-<b>${item.subject}</b>
-
-<p>${item.topic}</p>
-
-<p>${item.description}</p>
-
-<video controls src="${item.video}"></video>
-
-<br><br>
-
-<button class="delete"
-onclick="deleteItem(${index})">
-
-Delete
-
-</button>
-
-`;
-
+if(!snapshot.exists()){
+  dashboard.innerHTML = "<h3>No Data Found</h3>";
+  return;
 }
 
-else{
+/* SHOW NEW FIRST */
+let data = [];
+snapshot.forEach(child=>{
+  data.push({key: child.key, val: child.val()});
+});
 
-card.innerHTML=`
+data.reverse().forEach(item=>{
 
+let d = item.val;
+let key = item.key;
+
+let card = document.createElement("div");
+card.className="card";
+
+if(d.type==="lecture"){
+
+card.innerHTML = `
+<h3>${d.class}</h3>
+<b>${d.subject}</b>
+<p>${d.topic}</p>
+<p>${d.description}</p>
+<video controls src="${d.video}"></video>
+<br><br>
+<button class="delete" onclick="deleteItem('${key}')">Delete</button>
+`;
+
+}else{
+
+card.innerHTML = `
 <h3>Schedule</h3>
-
-<p>Class : ${item.class}</p>
-
-<p>Teacher : ${item.teacher}</p>
-
-<p>Subject : ${item.subject}</p>
-
-<p>Time : ${item.time}</p>
-
-<button class="delete"
-onclick="deleteItem(${index})">
-
-Delete
-
-</button>
-
+<p>Class : ${d.class}</p>
+<p>Teacher : ${d.teacher}</p>
+<p>Subject : ${d.subject}</p>
+<p>Time : ${d.time}</p>
+<button class="delete" onclick="deleteItem('${key}')">Delete</button>
 `;
 
 }
@@ -884,19 +720,16 @@ dashboard.appendChild(card);
 
 });
 
+});
+
 }
 
-
-
-window.onload=function(){
-
-closeDrawer();
-
-loadDashboard();
-
+/* INIT */
+window.onload = function(){
+  closeDrawer();
+  loadDashboard();
 }
 
 </script>
-
 </body>
 </html>

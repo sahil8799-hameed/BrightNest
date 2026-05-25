@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BrightNest Test Dashboard</title>
+  <link rel="stylesheet" href="test.css">
+</head>
+<body>
+  <!-- Navbar omitted for brevity -->
+
+  <div class="container">
+    <header>
+
+<a href="../sindh-board - test.html">
+<button class="create-btn"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+   width="24px" fill="#FFFFFF"><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg> Go Back</button>
+</a>
+
+<h1>Tests Dashboard</h1>
+
+<button id="openFormBtn" class="create-btn">➕ Create Test</button>
+
+</header>
+
+    <div class="notes-container" id="notesContainer"></div>
+
+    <!-- Create Test Panel -->
+    <div class="side-form" id="sideForm">
+      <h2>Create Test</h2>
+      <input type="text" id="noteTitle" placeholder="Enter Test Title">
+      <textarea id="noteContent" placeholder="Enter Test Content / Questions"></textarea>
+      <input type="file" id="noteFile" accept="image/*,.pdf">
+      <button id="addNoteBtn">Create Test</button>
+      <button id="closeFormBtn" class="close-btn">✖ Close</button>
+    </div>
+  </div>
+
+  <!-- Solve Test Panel -->
+  <div class="solve-side-form" id="solveSideForm">
+    <h2 id="solveTitle">Solve Test</h2>
+    <input type="text" id="studentName" placeholder="Student Name">
+    <input type="text" id="fatherName" placeholder="Father Name">
+    <input type="text" id="subjectName" placeholder="Subject">
+    <input type="file" id="photo" placeholder="Attach PDF/Image">
+    <button id="submitTestBtn">Submit Test</button>
+    <button id="closeSolveBtn" class="close-btn">✖ Close</button>
+  </div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+import { 
+getDatabase, 
+ref, 
+push, 
+onValue, 
+remove 
+} from "https://www.gstatic.com/firebasejs/12.10.0/firebase-database.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyDIC_F-CicoOReHOS0_2E479xNO99oxuYY",
+authDomain: "brightnest-8f214.firebaseapp.com",
+databaseURL: "https://brightnest-8f214-default-rtdb.firebaseio.com",
+projectId: "brightnest-8f214",
+storageBucket: "brightnest-8f214.firebasestorage.app",
+messagingSenderId: "73934228297",
+appId: "1:73934228297:web:a36c6cb93407d38c376898"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+/* CLASS NAME */
+const CLASS_NAME = "fedral-computer";
+
+/* Firebase refs */
+
+const testsRef = ref(db,"tests/"+CLASS_NAME);
+
+/* Elements */
+
+const notesContainer = document.getElementById("notesContainer");
+const openFormBtn = document.getElementById("openFormBtn");
+const sideForm = document.getElementById("sideForm");
+const closeFormBtn = document.getElementById("closeFormBtn");
+const addNoteBtn = document.getElementById("addNoteBtn");
+
+const noteTitle = document.getElementById("noteTitle");
+const noteContent = document.getElementById("noteContent");
+const noteFile = document.getElementById("noteFile");
+
+const solveSideForm = document.getElementById("solveSideForm");
+const closeSolveBtn = document.getElementById("closeSolveBtn");
+const submitTestBtn = document.getElementById("submitTestBtn");
+
+const studentName = document.getElementById("studentName");
+const fatherName = document.getElementById("fatherName");
+const subjectName = document.getElementById("subjectName");
+const Photo = document.getElementById("photo");
+
+const CREATE_TEST_PIN = "1234";
+const DELETE_TEST_PIN = "12345";
+
+let currentTestId=null;
+
+/* Open Form */
+
+openFormBtn.addEventListener("click",()=>{
+
+const pin = prompt("Enter PIN to create a test:");
+
+if(pin===CREATE_TEST_PIN){
+sideForm.classList.add("active");
+}else{
+alert("Incorrect PIN ❌");
+}
+
+});
+
+closeFormBtn.addEventListener("click",()=>sideForm.classList.remove("active"));
+
+/* Create Test */
+
+addNoteBtn.addEventListener("click",()=>{
+
+if(!noteTitle.value || !noteContent.value){
+alert("Fill Title & Content");
+return;
+}
+
+const test={
+
+title:noteTitle.value,
+content:noteContent.value,
+file: noteFile.files[0] ? URL.createObjectURL(noteFile.files[0]) : null,
+createdAt:new Date().toLocaleString()
+
+};
+
+push(testsRef,test);
+
+sideForm.classList.remove("active");
+
+noteTitle.value="";
+noteContent.value="";
+noteFile.value="";
+
+});
+
+/* Load Tests Real Time */
+
+onValue(testsRef,(snapshot)=>{
+
+notesContainer.innerHTML="";
+
+snapshot.forEach(child=>{
+
+const test = child.val();
+const id = child.key;
+
+const div=document.createElement("div");
+
+div.classList.add("note");
+
+div.innerHTML=`
+
+<h3>${test.title}</h3>
+
+<p>${test.content}</p>
+
+${test.file ? `<a href="${test.file}" target="_blank">📄 View File</a>` : ""}
+
+<div class="btn-group">
+
+<button class="solve-btn" data-id="${id}">
+📝 Solve Test
+</button>
+
+<button class="delete-btn" data-id="${id}">
+❌ Delete
+</button>
+
+</div>
+
+`;
+
+notesContainer.appendChild(div);
+
+});
+
+/* Solve buttons */
+
+document.querySelectorAll(".solve-btn").forEach(btn=>{
+
+btn.addEventListener("click",e=>{
+
+openSolvePanel(e.target.dataset.id);
+
+});
+
+});
+
+/* Delete buttons */
+
+document.querySelectorAll(".delete-btn").forEach(btn=>{
+
+btn.addEventListener("click",e=>{
+
+const pin = prompt("Enter PIN to delete");
+
+if(pin!==DELETE_TEST_PIN){
+alert("Incorrect PIN ❌");
+return;
+}
+
+remove(ref(db,"tests/"+CLASS_NAME+"/"+e.target.dataset.id));
+
+});
+
+});
+
+});
+
+/* Solve Panel */
+
+function openSolvePanel(id){
+
+currentTestId=id;
+
+solveSideForm.classList.add("active");
+
+studentName.value="";
+fatherName.value="";
+subjectName.value="";
+Photo.value="";
+
+}
+
+closeSolveBtn.addEventListener("click",()=>{
+
+solveSideForm.classList.remove("active");
+
+});
+
+/* Submit Test */
+
+submitTestBtn.addEventListener("click",()=>{
+
+if(!studentName.value || !fatherName.value || !subjectName.value || !Photo.files[0]){
+alert("Fill all fields");
+return;
+}
+
+const reader=new FileReader();
+
+reader.onload=function(e){
+
+const submission={
+
+testId:currentTestId,
+studentName:studentName.value,
+fatherName:fatherName.value,
+subject:subjectName.value,
+answerFile:e.target.result,
+submittedAt:new Date().toLocaleString()
+
+};
+
+push(ref(db,"studentSubmissions/"+CLASS_NAME),submission)
+
+.then(()=>{
+
+alert("Test Submitted Successfully ✅");
+
+solveSideForm.classList.remove("active");
+
+studentName.value="";
+fatherName.value="";
+subjectName.value="";
+Photo.value="";
+
+});
+
+};
+
+reader.readAsDataURL(Photo.files[0]);
+
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8th Class Notes</title>
+<link rel="stylesheet" href="./notes.css">
+</head>
+
+<body>
+
+<!-- Start Navbar -->
+
+<nav class="navbar">
+<div class="nav-container">
+
+<div class="logo">
+<img src="../Images/logo.png" alt="logo" id="logo">
+</div>
+
+<input type="checkbox" id="menu" class="menu-toggle">
+<label for="menu" class="hamburger">☰</label>
+
+<div class="nav-links">
+<a href="../../index.html">Home</a>
+<a href="#">Cources</a>
+
+<a href="#">
+<div class="dropdown">
+<div class="select-box" id="h">Notes</div>
+<ul class="dropdown-list">
+<a href="."><li>Sindh Board</li></a>
+<a href="./fedral-board.html"><li>Federal Board</li></a>
+<a href="./punjab-board.html"><li>Punjab Board</li></a>
+</ul>
+</div>
+</a>
+
+<a href="#">
+<div class="dropdown">
+<div class="select-box">Classes</div>
+<ul class="dropdown-list">
+<a href="../sindh-board.html"><li>Sindh Board</li></a>
+<a href="../fedral-board.htm"><li>Fedral Board</li></a>
+<a href="../punjab-board.html"><li>Punjab Board</li></a>
+</ul>
+</div>
+</a>
+
+<a href="#">Test</a> <a href="#">Student Progress</a> <a href="#">Complain</a>
+
+<button class="sign-btn">Sign In</button>
+
+</div>
+</div>
+</nav>
+
+<!-- End Navbar -->
+
+<div class="container">
+
+<header>
+<h1>8th Class Notes</h1>
+<button id="openFormBtn" class="create-btn">➕ Create Note</button>
+</header>
+
+<div class="notes-container" id="notesContainer"></div>
+
+<div id="fileViewer" style="display:none; margin-top:20px;">
+<button onclick="closeViewer()">❌ Close</button>
+<br><br>
+<iframe id="viewerFrame" width="100%" height="500px"></iframe>
+</div>
+
+<div class="side-form" id="sideForm">
+
+<h2>Create Note</h2>
+
+<input type="text" id="noteTitle" placeholder="Enter Note Title">
+
+<textarea id="noteContent" placeholder="Enter Note Content"></textarea>
+
+<input type="file" id="noteFile" accept="image/*,.pdf">
+
+<button id="addNoteBtn">Add Note</button>
+
+<button id="closeFormBtn" class="close-btn">✖ Close</button>
+
+</div>
+
+</div>
+
+<!-- Footer -->
+
+<footer class="footer">
+<div class="footer-bottom">
+© 2026 BrightNest Academy | All Rights Reserved
+</div>
+</footer>
+
+<script type="module">
+
+// 🔥 Firebase imports
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
+
+// 🔐 Config
+const firebaseConfig = {
+  apiKey: "AIzaSyDIC_F-CicoOReHOS0_2E479xNO99oxuYY",
+  authDomain: "brightnest-8f214.firebaseapp.com",
+  databaseURL: "https://brightnest-8f214-default-rtdb.firebaseio.com",
+  projectId: "brightnest-8f214",
+  storageBucket: "brightnest-8f214.firebasestorage.app",
+  messagingSenderId: "73934228297",
+  appId: "1:73934228297:web:a36c6cb93407d38c376898"
+};
+
+// 🚀 Init
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+// ✅ CLASS BASED PATH (IMPORTANT FIX)
+const CLASS_NAME = "Fedral_class_10_English_notes";
+const notesRef = ref(db, "notes/" + CLASS_NAME);
+
+// 🎯 Elements
+const openFormBtn = document.getElementById("openFormBtn");
+const closeFormBtn = document.getElementById("closeFormBtn");
+const sideForm = document.getElementById("sideForm");
+const addNoteBtn = document.getElementById("addNoteBtn");
+const notesContainer = document.getElementById("notesContainer");
+
+// 📂 Form Control
+openFormBtn.onclick = ()=> sideForm.style.right="0px";
+closeFormBtn.onclick = ()=> sideForm.style.right="-400px";
+
+// 📥 LOAD REALTIME (FIXED)
+function loadNotes(){
+
+onValue(notesRef, (snapshot)=>{
+
+notesContainer.innerHTML="";
+
+// ✅ Agar koi data nahi hai
+if(!snapshot.exists()){
+notesContainer.innerHTML = "<p style='text-align:center;'>No notes yet</p>";
+return;
+}
+
+snapshot.forEach((child)=>{
+
+const note = child.val();
+const id = child.key;
+
+const div = document.createElement("div");
+div.className="note";
+
+div.innerHTML = `
+<h3>${note.title}</h3>
+<p>${note.content}</p>
+
+${note.file ? `<button onclick="viewFile('${note.file}')">📄 View File</button>` : ""}
+
+<br><br>
+
+<button onclick="deleteNote('${id}')">Delete</button>
+`;
+
+notesContainer.appendChild(div);
+
+});
+
+}, (error)=>{
+console.error("Firebase Error:", error);
+});
+
+}
+
+// ➕ ADD NOTE (FIXED)
+addNoteBtn.onclick = ()=>{
+
+const title = document.getElementById("noteTitle").value.trim();
+const content = document.getElementById("noteContent").value.trim();
+const file = document.getElementById("noteFile").files[0];
+
+if(!title){
+alert("Enter Title");
+return;
+}
+
+const reader = new FileReader();
+
+reader.onload = function(){
+
+push(notesRef, {
+title,
+content,
+file: reader.result || "",
+createdAt: Date.now() // ✅ extra safety
+});
+
+// reset form
+sideForm.style.right="-400px";
+document.getElementById("noteTitle").value="";
+document.getElementById("noteContent").value="";
+document.getElementById("noteFile").value="";
+
+}
+
+if(file){
+reader.readAsDataURL(file);
+}else{
+reader.onload();
+}
+
+}
+
+// ❌ DELETE
+window.deleteNote = function(id){
+remove(ref(db, "notes/" + CLASS_NAME + "/" + id));
+}
+
+// 📄 VIEW SAME PAGE
+window.viewFile = function(file){
+document.getElementById("fileViewer").style.display = "block";
+document.getElementById("viewerFrame").src = file;
+}
+
+window.closeViewer = function(){
+document.getElementById("fileViewer").style.display = "none";
+}
+
+// 🚀 Start
+loadNotes();
+
+</script>
+
+</body>
+</html>
