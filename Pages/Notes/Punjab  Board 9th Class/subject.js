@@ -2,7 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const textElement = document.getElementById('typed-text');
 
     const words = [
+<<<<<<< HEAD
         "Choose Subject & Get Class", 
+=======
+        "Choose Subject & Get Notes", 
+>>>>>>> 9a8eeaf (Note Pages Completed)
     ];
 
     let wordIndex = 0;

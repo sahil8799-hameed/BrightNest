@@ -1,0 +1,186 @@
+/* ==========================
+   RESPONSIVE DESIGN
+========================== */
+
+/* Laptop Small Screens */
+@media (max-width: 1024px){
+
+    header{
+        padding: 10px 15px;
+    }
+
+    header h1{
+        font-size: 1.6rem;
+    }
+
+    .footer-content{
+        gap: 2%;
+    }
+}
+
+/* Tablet */
+@media (max-width: 768px){
+
+    header{
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    #create-btn,
+    .create-btn{
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .notes-container{
+        grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    }
+
+    .side-form{
+        width: 50%;
+        right: -100%;
+        border-radius: 0;
+    }
+
+    /* Footer */
+    footer{
+        height: auto;
+    }
+
+    .footer-content{
+        flex-wrap: wrap;
+        height: auto;
+        padding: 25px 15px;
+    }
+
+    .f-one,
+    .f-two,
+    .f-three,
+    .f-four,
+    .f-five{
+        width: 48%;
+        height: auto;
+        padding-top: 0;
+        padding-left: 0;
+    }
+
+    #footer-logo{
+        width: 80px;
+        height: 80px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px){
+
+    header{
+        padding: 15px 10px;
+    }
+
+    header h1{
+        font-size: 1.3rem;
+    }
+
+    #create-btn,
+    .create-btn{
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .notes-container{
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .note{
+        width: 100%;
+        margin: 0;
+    }
+
+    .note h3{
+        font-size: 1rem;
+        word-break: break-word;
+    }
+
+    .note p{
+        font-size: 14px;
+        word-break: break-word;
+    }
+
+    .file-container{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .file-link{
+        max-width: 100%;
+    }
+
+    .download-btn{
+        width: 100%;
+        text-align: center;
+    }
+
+    #viewerFrame{
+        height: 350px;
+    }
+
+    /* Footer */
+    .footer-content{
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .f-one,
+    .f-two,
+    .f-three,
+    .f-four,
+    .f-five{
+        width: 100%;
+        align-items: center;
+        text-align: center;
+    }
+
+    .f-one-uper{
+        flex-direction: column;
+    }
+
+    #footer-logo{
+        width: 90px;
+        height: 90px;
+    }
+
+    .icons{
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .footer-bottom{
+        padding: 10px;
+        font-size: 13px;
+    }
+}
+
+/* Extra Small Phones */
+@media (max-width: 360px){
+
+    header h1{
+        font-size: 1.1rem;
+    }
+
+    .note{
+        padding: 12px;
+    }
+
+    .note button{
+        width: 100%;
+    }
+
+    #viewerFrame{
+        height: 280px;
+    }
+}

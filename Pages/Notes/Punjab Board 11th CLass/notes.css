@@ -8,6 +8,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
+<<<<<<< HEAD
 /* --- Body & Container --- */
 body {
     background: #f0f4f8;
@@ -278,6 +279,8 @@ a:hover{
 }
 
 
+=======
+>>>>>>> 9a8eeaf (Note Pages Completed)
 /* --- Header --- */
 header {
     display: flex;
@@ -296,7 +299,11 @@ header h1 {
     font-size: 1.8rem;
 }
 
+<<<<<<< HEAD
 .create-btn {
+=======
+.create-btn{
+>>>>>>> 9a8eeaf (Note Pages Completed)
     background: black;
     color: White;
     padding: 10px 20px;
@@ -307,6 +314,30 @@ header h1 {
     transition: all 0.3s ease;
 }
 
+<<<<<<< HEAD
+=======
+#create-btn {
+    background: black;
+    color: White;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+} 
+
+#create-btn:hover {
+    background: black;
+    color: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+>>>>>>> 9a8eeaf (Note Pages Completed)
 .create-btn:hover {
     background: black;
     color: #fff;
@@ -496,7 +527,11 @@ transform:scale(0.95);
     }
 
     .side-form {
+<<<<<<< HEAD
         width: 100%;
+=======
+        width: 50%;
+>>>>>>> 9a8eeaf (Note Pages Completed)
     }
 }
 
